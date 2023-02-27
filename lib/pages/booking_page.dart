@@ -6,6 +6,8 @@ import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 
+import 'booking_confirmation.dart';
+
 class BookingPage extends StatefulWidget {
   final Hotel? hotel;
 
@@ -19,6 +21,8 @@ class _BookingPageState extends State<BookingPage> {
   var eventType = null;
   String? menuId = "id";
   var dateSelected = null;
+  List<DateTime> disabledDates = [DateTime.parse('2023-02-25'), DateTime.parse('2023-02-26'),DateTime.parse('2023-02-02')];
+
   TextEditingController _date = TextEditingController();
 
 
@@ -49,6 +53,16 @@ class _BookingPageState extends State<BookingPage> {
       {'id': "birthday", 'name': "Birthday", 'img': "birthday"},
       {'id': "concert", 'name': "Concert", 'img': "concert"}
     ];
+
+    int calculateTotal(){
+    int menuPrice=selectedMenu?.price??0;
+    int decorationCharges=selectedDecoration.charges;
+      var total=(((int.parse(numberOfGuests.text)) * menuPrice) +
+          decorationCharges);
+        return total;
+    }
+
+
 
     return Scaffold(
       body: Scaffold(
@@ -175,11 +189,15 @@ class _BookingPageState extends State<BookingPage> {
                             labelText: "Pick Date",
                           ),
                           onTap: () async {
+
                             DateTime? pickedDate = await showDatePicker(
                                 context: context,
+                                selectableDayPredicate: (day){
+                                  return !disabledDates.contains(day);
+                                },
                                 initialDate: DateTime.now(),
-                                firstDate: DateTime(2022),
-                                lastDate: DateTime(2025));
+                                firstDate: DateTime(2022,01,01),
+                                lastDate: DateTime(2023,12,31));
                             if (pickedDate != null) {
                               setState(() {
                                 _date.text =
@@ -298,7 +316,21 @@ class _BookingPageState extends State<BookingPage> {
                   Row(children: [
                     Expanded(
                         child: OutlinedButton(
-                            onPressed: () {}, child: const Text('Proceed')))
+                            onPressed: () {
+                              if(int.parse(numberOfGuests.text)>0 && (selectedMenu!=null && selectedMenu?.price!=0)) {
+                               var newBooking=Booking(date: _date.text,numberOfPersons: int.parse(numberOfGuests.text),
+                                    menu: selectedMenu??Menu("uid",[], "", 0),
+                                    decorationType: selectedDecoration.name,hotel: widget.hotel,totalBill: calculateTotal(),eventType: eventType);
+                                Get.to(() => BookingConfirmationPage(booking:newBooking));
+
+                                //create Get Popup to show booking details
+                              }
+                              else{
+                                Get.snackbar("Error", "Please select menu and number of guests");
+                              }
+
+
+                            }, child: const Text('Proceed')))
                   ]),
                 ],
               ),
@@ -322,14 +354,6 @@ class _BookingPageState extends State<BookingPage> {
     );
   }
 
-  Future<DateTime?> buildDatePicker(BuildContext context) {
-    return showDatePicker(
-      context: context,
-      firstDate: DateTime(2023, 1, 1),
-      lastDate: DateTime(2025, 12, 30),
-      initialDate: DateTime.now(),
-    );
-  }
 
   Widget buildRow(List<Map> items) {
     var item;
@@ -422,7 +446,7 @@ class _BookingPageState extends State<BookingPage> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.start,
-                  children: [...menu.items.map((e) => Text(e.toString())),Spacer(),Text("Price:${menu.price.toString()??"0"}")],
+                  children: [...menu.items.map((e) => Text(e.toString())),Spacer(),Text("Price:${menu.price.toString()}")],
                 ),
               ),
               actions: <Widget>[
@@ -474,4 +498,7 @@ class _BookingPageState extends State<BookingPage> {
       ),
     );
   }
+
+
 }
+

@@ -1,3 +1,4 @@
+import 'package:evento/pages/bookings_list.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:evento/pages/home_page.dart';
@@ -19,6 +20,9 @@ Widget buildBottomNavBar(int currIndex, Size size, bool isDarkMode) {
       if (value != currIndex) {
         if (value == 0) {
           Get.off(const HomePage());
+        }
+        if(value==2){
+          Get.off(BookingsList());
         }
       }
     },

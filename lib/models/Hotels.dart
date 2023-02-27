@@ -56,3 +56,63 @@ class Decorations {
 
   Map<String, dynamic> toJson() => _$DecorationsToJson(this);
 }
+
+class Booking {
+  static int _maxId = 0;
+
+  int? id;
+  Hotel? hotel;
+  String date;
+  int numberOfPersons;
+  String decorationType;
+  String eventType;
+  Menu menu;
+  int totalBill;
+  String userId;
+
+  Booking({
+    required this.date,
+    required this.numberOfPersons,
+    required this.decorationType,
+    required this.eventType,
+    required this.menu,
+    required this.hotel,
+    required this.totalBill,
+    required this.userId,
+  }) : id = ++_maxId {
+    if (numberOfPersons <= 0) {
+      throw ArgumentError('Number of persons must be greater than zero.');
+    }
+    if (menu.items.isEmpty || menu == null){
+      throw ArgumentError('Menu must not be empty.');
+    }
+  }
+}
+
+
+// part 'booking.g.dart';
+//
+// @JsonSerializable()
+// class Booking {
+//   int id;
+//   DateTime date;
+//   int numberOfPersons;
+//   String decorationType;
+//   String eventType;
+//   List<String> menu;
+//
+//   Booking({
+//     required this.date,
+//     required this.numberOfPersons,
+//     required this.decorationType,
+//     required this.eventType,
+//     required this.menu,
+//   }) : id = 0;
+//
+//   factory Booking.fromJson(Map<String, dynamic> json) =>
+//       _$BookingFromJson(json);
+//   Map<String, dynamic> toJson() => _$BookingToJson(this);
+// }
+
+
+
