@@ -1,15 +1,17 @@
 import 'package:evento/pages/bookings_list.dart';
+import 'package:evento/pages/favorites_page.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:evento/pages/home_page.dart';
 import 'package:evento/widgets/bottom_nav_item.dart';
 import 'package:unicons/unicons.dart';
 
+
 Widget buildBottomNavBar(int currIndex, Size size, bool isDarkMode) {
   return BottomNavigationBar(
-    iconSize: size.width * 0.07,
+    iconSize: size.width * 0.08,
     elevation: 0,
-    selectedLabelStyle: const TextStyle(fontSize: 0),
+    selectedLabelStyle: const TextStyle(fontSize: 8),
     unselectedLabelStyle: const TextStyle(fontSize: 0),
     currentIndex: currIndex,
     backgroundColor: const Color(0x00ffffff),
@@ -19,10 +21,13 @@ Widget buildBottomNavBar(int currIndex, Size size, bool isDarkMode) {
     onTap: (value) {
       if (value != currIndex) {
         if (value == 0) {
-          Get.off(const HomePage());
+          Get.off(()=>HomePage());
         }
         if(value==2){
-          Get.off(BookingsList());
+          Get.off(()=>BookingsList());
+        }
+        if(value==1){
+          Get.off(()=>FavoritesPage());
         }
       }
     },

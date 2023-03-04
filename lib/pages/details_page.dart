@@ -19,7 +19,7 @@ class DetailsPage extends StatefulWidget {
 }
 
 class _DetailsPageState extends State<DetailsPage> {
-  bool extendDetails = true;
+  bool extendDetails =false;
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size; //check the size of device
@@ -34,7 +34,7 @@ class _DetailsPageState extends State<DetailsPage> {
       body: Center(
         child: Container(
           height: size.height,
-          width: size.height,
+          width: size.width,
           decoration: BoxDecoration(
             color: isDarkMode
                 ? const Color(0xff06090d)
@@ -105,7 +105,7 @@ class _DetailsPageState extends State<DetailsPage> {
               },
               errorBuilder: (context, error, stackTrace) {
                 return Container(
-                  height: size.height * 0.35,
+                  height: size.height * 0.55,
                   width: size.width,
                   decoration: BoxDecoration(
                     color: defaultColor.withOpacity(0.1),

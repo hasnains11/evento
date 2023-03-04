@@ -3,17 +3,10 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:unicons/unicons.dart';
 
 
-
-
-
-
-
-
-
-Row buildTopBar(Color defaultColor, Size size) {
-
-   String? dropDownValue="Islamabad";
-
+Row buildTopBar(Color defaultColor, Size size, Function(String) setlocation) {
+  setLoc(String location) {
+    setlocation(location);
+  };
   return Row(
     mainAxisAlignment: MainAxisAlignment.spaceBetween,
     children: [
@@ -38,7 +31,7 @@ Row buildTopBar(Color defaultColor, Size size) {
                 padding: EdgeInsets.only(
                   left: size.width * 0.015,
                 ),
-                child: Dropdown()
+                child: Dropdown(setlocation: setLoc,)
                 )],
               ),
             ],
@@ -65,7 +58,8 @@ Row buildTopBar(Color defaultColor, Size size) {
 }
 
 class Dropdown extends StatefulWidget {
-  const Dropdown({Key? key}) : super(key: key);
+  final Function(String) setlocation;
+   Dropdown({Key? key,required this.setlocation}) : super(key: key);
 
   @override
   State<Dropdown> createState() => _DropdownState();
@@ -91,9 +85,11 @@ class _DropdownState extends State<Dropdown> {
                     fontWeight: FontWeight.bold,
                   ),)
             )).toList(),
-        onChanged: (String? value) { setState(() {
+        onChanged: (String? value) {
               dropdownvalue=value;
-            });},
+              widget.setlocation(value!);
+              print(value);
+        },
       );
   }
 }

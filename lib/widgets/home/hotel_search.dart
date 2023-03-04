@@ -7,15 +7,13 @@ import 'package:unicons/unicons.dart';
 import '../../models/Hotels.dart';
 import '../../services/firestore.dart';
 
-Column buildHotelSearch(Color defaultColor, Size size) {
-
-
+Column buildHotelSearch(Color defaultColor, Size size, List<Hotel> hotels) {
   return Column(children: [
     Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         Text(
-          'Search results (${katowiceHotels.length + forYou.length})',
+          'Hotels Found (${hotels.length})',
           style: GoogleFonts.lato(
             color: defaultColor,
             fontSize: size.height * 0.025,
@@ -46,47 +44,19 @@ Column buildHotelSearch(Color defaultColor, Size size) {
         vertical: size.height * 0.025,
       ),
       child: SizedBox(
-        width: size.width * 0.85,
-        child: FutureBuilder<List<Hotel>>(
-          future: FirestoreService().getHotelList(),
-          builder: (context, snapshot) {
-            if(snapshot.hasError){
-                print(snapshot.error);
-                return const Center(child: Text("Something Went Wrong"),);
-            }
-            else if(snapshot.connectionState==ConnectionState.waiting){
-              return const CircularProgressIndicator();
-            }
-            else if(snapshot.hasData){
-                var hotels= snapshot.data!.map((e) => e).toList();
-                // print(hotels[0]);
-                // print("snapshot Data:${snapshot.data}");
-                // print("hotels.element ${hotels.elementAt(0).name}");
-                // print(hotels.length);
-                return ListView.builder(
-                  itemCount: hotels.length,
-                  primary: false,
-                  physics: const NeverScrollableScrollPhysics(),
-                  shrinkWrap: true,
-                  itemBuilder: (context, i) {
-                    Hotel? hotel;
-                    hotel=hotels.elementAt(i);
-                     // return Text(i.toString());
-                    return buildHotel(hotel, defaultColor, size);
-                  },
-                );
-
-                // hotels?.map((e) => print(e.name));
-                // hotels?.map((e) => print(e));
-                // return Text("Data Received");
-            }else{
-              return const Text("Unknown Error");
-            }
-          },
-
-
-        ),
-      ),
+          width: size.width * 0.85,
+          child: ListView.builder(
+            itemCount: hotels.length,
+            primary: false,
+            physics: const NeverScrollableScrollPhysics(),
+            shrinkWrap: true,
+            itemBuilder: (context, i) {
+              Hotel? hotel;
+              hotel = hotels.elementAt(i);
+              // return Text(i.toString());
+              return buildHotel(hotel, defaultColor, size);
+            },
+          )),
     ),
   ]);
 }

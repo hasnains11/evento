@@ -15,6 +15,7 @@ class Hotel {
   Map<String,Menu> menus;
   List<String>? services;
   List<Decorations> decorations;
+  List<String> bookingDates=[];
 
   Hotel(
       this.uid,

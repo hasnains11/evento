@@ -25,7 +25,7 @@ Widget buildDetailsBottomBar(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              'per head',
+              'Starting from',
               style: GoogleFonts.poppins(
                 color: defaultColor,
                 fontSize: size.height * 0.02,
@@ -35,12 +35,12 @@ Widget buildDetailsBottomBar(
             Row(
               children: [
                 Text(
-                  "Rs ${hotel.price}",
+                  "Pkr ${hotel.price}",
                   style: GoogleFonts.poppins(
                     color: defaultColor,
-                    fontSize: size.height * 0.035,
+                    fontSize: size.height * 0.027,
                     fontWeight: FontWeight.w600,
-                    wordSpacing: -3.5,
+                    wordSpacing: 1,
                   ),
                 ),
                 // Text(
@@ -57,10 +57,10 @@ Widget buildDetailsBottomBar(
         ),
         InkWell(
           child: Container(
-            width: size.width * 0.35,
-            height: size.height * 0.07,
+            width: size.width * 0.4,
+            height: size.height * 0.08,
             decoration: BoxDecoration(
-              color: defaultColor,
+              color: Colors.deepPurple,
               borderRadius: BorderRadius.circular(10),
             ),
             child: Align(

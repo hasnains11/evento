@@ -24,7 +24,7 @@ AnimatedPadding buildHotelDetails(Hotel hotel, Color defaultColor,
               )),
             ),
             width: size.width,
-            height: extendDetails ? size.height * 0.53 : size.height * 0.48,
+            height: extendDetails ? size.height * 0.57 : size.height * 0.53,
             child: Padding(
               padding: EdgeInsets.only(
                 top: size.height * 0.03,
@@ -90,7 +90,7 @@ AnimatedPadding buildHotelDetails(Hotel hotel, Color defaultColor,
                             size: size.height * 0.025,
                           ),
                           Text(
-                            "5",
+                            hotel.rating.toString(),
                             style: GoogleFonts.lato(
                               color: defaultColor.withOpacity(0.5),
                               fontSize: size.height * 0.025,
@@ -110,29 +110,33 @@ AnimatedPadding buildHotelDetails(Hotel hotel, Color defaultColor,
                   SizedBox(
                     width: size.width * 0.8,
                     height:
-                        extendDetails ? size.height * 0.4 : size.height * 0.35,
+                        extendDetails ? size.height * 0.44: size.height * 0.40,
                     child: SingleChildScrollView(
                       padding: EdgeInsets.zero,
                       child: Column(
                         mainAxisAlignment:MainAxisAlignment.start,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children:[
-                          Text('Hotel Description',style: TextStyle(fontSize: size.height*0.03 ,fontWeight: FontWeight.w700),),
+                          SizedBox(height: 4,),
+                          Text('Hotel Description',style: TextStyle(fontSize: size.height*0.025 ,fontWeight: FontWeight.w700),),
+                          SizedBox(height: 4,),
                           Text(
                           //TODO: change description
                             hotel.description??"hotel description",
                           style: GoogleFonts.poppins(
-                            color: defaultColor.withOpacity(0.9),
-                            fontSize: size.height * 0.018,
-                            fontWeight: FontWeight.w600,
+                            color: defaultColor.withOpacity(0.8),
+                            fontSize: size.height * 0.016,
+                            fontWeight: FontWeight.w500,
                           ),
                         ),
-                          SizedBox(height: size.height*0.03,),
+                          SizedBox(height: size.height*0.02,),
                           Text("Events Entertained",style: TextStyle(fontSize:size.height*0.02,fontWeight: FontWeight.w700),),
+                          SizedBox(height: 4,),
                           ...getServices(hotel),
-                          SizedBox(height: size.height*0.03,),
+                          SizedBox(height: size.height*0.02,),
                           Text("Capacity",style: TextStyle(fontSize:size.height*0.02,fontWeight: FontWeight.w700),),
                           Text("${hotel.capacity} person maximum"),
+                          SizedBox(height: 5,)
                           // Container(child:getServices(hotel),
                           // height:  size.height*0.2,
                           // width: size.width*0.8,)

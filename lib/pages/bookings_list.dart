@@ -73,7 +73,7 @@ class _BookingsListState extends State<BookingsList> {
 
 
     return Scaffold(
-      bottomNavigationBar: buildBottomNavBar(3,Get.size,false),
+      bottomNavigationBar: buildBottomNavBar(3,Get.size,true),
 
         appBar: AppBar(
           title: Text('Bookings List'),
