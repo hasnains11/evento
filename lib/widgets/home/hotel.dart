@@ -64,9 +64,9 @@ class _HotelState extends State<HotelCard> {
     Color defaultColor=widget.defaultColor;
 
     SharedPrefs().getFavorites().then((fav_hotels) {
-             bool isFav= isFavorite=favorites.contains(jsonEncode(hotel.toJson()))?true :false;
+             bool isFav= favorites.contains(jsonEncode(hotel.toJson()))?true :false;
       setState(() {
-        favorites = [...fav_hotels];
+        favorites = fav_hotels;
         isFavorite=isFav;
 
       });

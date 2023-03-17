@@ -1,6 +1,9 @@
 import 'dart:async';
 
+import 'package:evento/pages/cities_options.dart';
+import 'package:evento/pages/events_screen.dart';
 import 'package:evento/pages/home_page.dart';
+import 'package:evento/pages/welcome_screen.dart';
 import 'package:evento/services/AuthService.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -63,7 +66,7 @@ class _EmailVerificationState extends State<EmailVerification> {
 
 
   Widget build(BuildContext context) {
-    return isEmailVerified ? HomePage(): Scaffold(
+    return isEmailVerified && AuthService().user!=null ? const WelcomeScreen(): Scaffold(
       appBar: AppBar(
         title: Text("Email Verification"),
       ),

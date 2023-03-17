@@ -8,6 +8,8 @@ import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../models/Hotels.dart';
+import '../services/sharedPref.dart';
+import '../widgets/side_drawer.dart';
 
 class FavoritesPage extends StatefulWidget {
   @override
@@ -21,6 +23,7 @@ class _FavoritesPageState extends State<FavoritesPage> {
   @override
   void initState() {
     super.initState();
+    // SharedPrefs.clear();
     _loadDataFromPrefs(); // Load data from shared preferences on init
   }
 
@@ -30,6 +33,8 @@ class _FavoritesPageState extends State<FavoritesPage> {
     final favorites = prefs.getStringList(AuthService().user!.uid) ?? [];
     var hotelList=favorites.map((e) => Hotel.fromJson(jsonDecode(e))).toList();
     print(hotelList);
+
+    // print(AuthService().user?.uid);
     if(mounted) {
       setState(() {
         _myData = [...hotelList];
@@ -45,6 +50,7 @@ class _FavoritesPageState extends State<FavoritesPage> {
     print(_myData);
     return Scaffold(
       appBar: AppBar(title: Text("Favourites")),
+      drawer: SideDrawer(index: 1,),
       bottomNavigationBar: buildBottomNavBar(1, Get.size, true),
       body:  _myData.isNotEmpty ?ListView.builder(
         itemCount: _myData.length,

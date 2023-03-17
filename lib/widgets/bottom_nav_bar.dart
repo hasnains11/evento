@@ -6,6 +6,8 @@ import 'package:evento/pages/home_page.dart';
 import 'package:evento/widgets/bottom_nav_item.dart';
 import 'package:unicons/unicons.dart';
 
+import '../pages/userInfo.dart';
+
 
 Widget buildBottomNavBar(int currIndex, Size size, bool isDarkMode) {
   return BottomNavigationBar(
@@ -23,11 +25,14 @@ Widget buildBottomNavBar(int currIndex, Size size, bool isDarkMode) {
         if (value == 0) {
           Get.off(()=>HomePage());
         }
-        if(value==2){
-          Get.off(()=>BookingsList());
-        }
         if(value==1){
           Get.off(()=>FavoritesPage());
+        }
+        if(value==2){
+          Get.off(()=> const BookingsList());
+        }
+        if(value==3){
+          Get.off(()=>const UserInformationScreen());
         }
       }
     },

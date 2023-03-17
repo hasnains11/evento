@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../models/Hotels.dart';
+import '../services/firestore.dart';
 import '../widgets/bottom_nav_bar.dart';
+import '../widgets/side_drawer.dart';
 
 class BookingsList extends StatefulWidget {
   const BookingsList({Key? key}) : super(key: key);
@@ -13,54 +16,35 @@ class BookingsList extends StatefulWidget {
 class _BookingsListState extends State<BookingsList> {
     bool _isLoading = false;
 
-  List<Bookings> _bookings = [
-    Bookings(
-      id: 1,
-      date: DateTime.now(),
-      numberOfPersons: 10,
-      decorationType: 'Flowers',
-      eventType: 'Wedding',
-      menu: 'Vegetarian',
-    ),
-    Bookings(
-      id: 2,
-      date: DateTime.now().add(Duration(days: 7)),
-      numberOfPersons: 20,
-      decorationType: 'Balloons',
-      eventType: 'Birthday',
-      menu: 'Non-vegetarian',
-    ),
-    Bookings(
-      id: 3,
-      date: DateTime.now().add(Duration(days: 14)),
-      numberOfPersons: 30,
-      decorationType: 'Candles',
-      eventType: 'Anniversary',
-      menu: 'Mixed',
-    ),
-  ];
+  late var _bookings;
 
-  void _cancelBooking(int bookingId) {
-    setState(() {
-      _bookings.removeWhere((booking) => booking.id == bookingId);
-    });
-    // Show snackbar to indicate successful cancellation
+  _cancelBooking(String bookingId,String hotelId,String date) async{
+    await FirestoreService().deleteBooking(bookingId,hotelId,date);
     ScaffoldMessenger.of(context).showSnackBar(SnackBar(
       content: Text('Booking cancelled'),
       duration: Duration(seconds: 2),
     ));
+     _fetchBookings();
+
   }
 
-    void _fetchBookings() async {
+    @override
+  void initState() {
+    super.initState();
+    _fetchBookings();
+  }
+
+  void _fetchBookings() async {
       setState(() {
         _isLoading = true;
       });
 
       // Simulate fetching bookings from Firestore
-      await Future.delayed(Duration(seconds: 2));
-
+      var bookings=await FirestoreService().getBookings();
+         print(bookings);
       setState(() {
         _isLoading = false;
+        _bookings=bookings;
       });
 
     }
@@ -70,157 +54,219 @@ class _BookingsListState extends State<BookingsList> {
   Widget build(BuildContext context) {
 
 
-
-
     return Scaffold(
-      bottomNavigationBar: buildBottomNavBar(3,Get.size,true),
-
+      bottomNavigationBar: buildBottomNavBar(2,Get.size,true),
+        drawer:SideDrawer(index: 2,),
         appBar: AppBar(
           title: Text('Bookings List'),
           centerTitle: true,
         ),
-        body:_isLoading?CircularProgressIndicator():ListView.builder(
-          itemCount: _bookings.length,
+        body:_isLoading ? Center(child: CircularProgressIndicator()):
+        _bookings?.isEmpty ?? true
+            ? Center(child: Text('No Bookings Yet'))
+            :
+        ListView.builder(
+          itemCount: _bookings?.length,
+
           itemBuilder: (BuildContext context, int index) {
-            Bookings booking = _bookings[index];
+            Map booking = _bookings?.elementAt(index)??{};
             return Card(
               elevation: 4.0,
               margin: EdgeInsets.symmetric(horizontal: 10.0, vertical: 6.0),
-              child: ListTile(
-                contentPadding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 20.0),
-                leading: CircleAvatar(
-                  child: Text('${booking.id}'),
-                  backgroundColor: Colors.orange,
-                ),
-                title: Text('${booking.eventType} - ${booking.date.day}/${booking.date.month}/${booking.date.year}'),
-                subtitle: Text('${booking.numberOfPersons} persons, ${booking.decorationType}, ${booking.menu}'),
-                trailing: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: <Widget>[
-                    SizedBox(
-                      height: 10,
-                      child: IconButton(
-                        icon: Icon(Icons.cancel),
-                        onPressed: () {
-                          // Cancel booking
-                          _cancelBooking(booking.id);
-                        },
+              child: Column(
+                children: [
+                  Container(
+                    width: double.infinity,
+                      alignment: Alignment.center,
+                      decoration: BoxDecoration(color: Colors.green),
+                      child: Column(
+                        children: [
+                          Image.network('${booking['hotelImg']}',
+                            fit: BoxFit.fill,
+                            height: Get.height* 0.2,
+                          ),
+                          Text('booking id:${booking['id']}'),
+                        ],
+                      )),
+                ListTile(
+
+                  // contentPadding: EdgeInsets.symmetric(horizontal: 10.0, vertical: 10.0),
+
+
+                  title: Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text('${booking['hotelName']}',style: TextStyle( fontSize: Get.height *0.023, fontWeight: FontWeight.bold),),
+
+                    Text('${booking['eventType'].toString().toUpperCase()}'
+                            ,style: TextStyle( fontSize:Get.height *0.016)),
+
+                  Text('${booking['bookingDate']}',
+                      style: TextStyle( fontSize:Get.height *0.018)),
+                    SizedBox(height: Get.height*0.01),
+
+                      ]),
+                  subtitle: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text('${booking['numberofPerson']} persons'),
+                      Text('${booking['decorationType']}'),
+
+                    ],
+                  ),
+                  trailing:
+                      Column(
+                        children: [
+                          SizedBox(
+                            height: Get.height*0.05,
+                            child: MaterialButton(
+                              onPressed: () async{
+
+                                // Show the dialog box
+                                showDialog(
+                                  context: context,
+                                  builder: (BuildContext context) {
+                                    return AlertDialog(
+                                      title: Text("Confirm Cancel"),
+                                      content: Text("Are you sure you want to cancel this booking?"),
+                                      actions: [
+                                        TextButton(
+                                          child: Text("back"),
+                                          onPressed: () {
+                                            Navigator.of(context).pop();
+                                          },
+                                        ),
+                                        TextButton(
+                                          child: Text("confirm"),
+                                          onPressed: () async{
+                                            // Perform some action here
+                                            await _cancelBooking(booking['id'],booking['hotelId'],booking['bookingDate']);
+                                            print('booking cancelled');
+                                            Navigator.of(context).pop();
+                                          },
+                                        ),
+                                      ],
+                                    );
+                                  },
+                                );
+
+
+
+                              },
+                              color: Colors.red,
+                              textColor: Colors.white,
+                              child: Icon(Icons.cancel_outlined),
+                              padding: EdgeInsets.all(0),
+                              shape: CircleBorder(),
+                            ),
+                          ),
+                          SizedBox(height: Get.height*0.01),
+                            Text('Cancel Booking',style: TextStyle(fontSize: Get.height*0.014),),
+                        ],
                       ),
-                    ),
-                    Text(
-                      'Cancel',
-                      style: TextStyle(fontSize: 12),
-                    ),
-                  ],
-                ),
-                onTap: () {
-                  // Naviga
-                  // te to booking details page
-                  //
-                 _showBookingDetailsDialog(context,booking);
-                },
+
               ),
+            ]),
             );
           },
-        ),
-
-    );
+        ));
   }
-
-
-
-}
-_showBookingDetailsDialog(BuildContext context ,Bookings booking) {
-  showDialog(
-    context: context,
-    builder: (BuildContext context) {
-      return Dialog(
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(20.0),
-        ),
-        child: Container(
-          padding: EdgeInsets.all(20.0),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                'Booking Details',
-                style: TextStyle(
-                  fontSize: 24.0,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-              SizedBox(height: 20.0),
-              Text(
-                'Booking ID: ${booking.id}',
-                style: TextStyle(fontSize: 18.0),
-              ),
-              SizedBox(height: 10.0),
-              Text(
-                'Date: ${booking.date}',
-                style: TextStyle(fontSize: 18.0),
-              ),
-              SizedBox(height: 10.0),
-              Text(
-                'Number of Persons: ${booking.numberOfPersons}',
-                style: TextStyle(fontSize: 18.0),
-              ),
-              SizedBox(height: 10.0),
-              Text(
-                'Decoration Type: ${booking.decorationType}',
-                style: TextStyle(fontSize: 18.0),
-              ),
-              SizedBox(height: 10.0),
-              Text(
-                'Event Type: ${booking.eventType}',
-                style: TextStyle(fontSize: 18.0),
-              ),
-              SizedBox(height: 10.0),
-              Text(
-                'Menu: ${booking.menu}',
-                style: TextStyle(fontSize: 18.0),
-              ),
-              SizedBox(height: 20.0),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  TextButton(
-                    onPressed: () => Navigator.pop(context),
-                    child: Text(
-                      'Close',
-                      style: TextStyle(
-                        color: Colors.black87,
-                        fontSize: 18.0,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ],
-          ),
-        ),
-      );
-    },
-  );
-
 }
 
-class Bookings{
-  final int id;
-  final DateTime date;
-  final int numberOfPersons;
-  final String decorationType;
-  final String eventType;
-  final String menu;
 
-  Bookings({
-    required this.id,
-    required this.date,
-    required this.numberOfPersons,
-    required this.decorationType,
-    required this.eventType,
-    required this.menu,
-  });
-}
+
+// _showBookingDetailsDialog(BuildContext context ,Booking booking) {
+//   showDialog(
+//     context: context,
+//     builder: (BuildContext context) {
+//       return Dialog(
+//         shape: RoundedRectangleBorder(
+//           borderRadius: BorderRadius.circular(20.0),
+//         ),
+//         child: Container(
+//           padding: EdgeInsets.all(20.0),
+//           child: Column(
+//             mainAxisSize: MainAxisSize.min,
+//             crossAxisAlignment: CrossAxisAlignment.start,
+//             children: [
+//               Text(
+//                 'Booking Details',
+//                 style: TextStyle(
+//                   fontSize: 24.0,
+//                   fontWeight: FontWeight.bold,
+//                 ),
+//               ),
+//               SizedBox(height: 20.0),
+//               Text(
+//                 'Booking ID: ${booking.id}',
+//                 style: TextStyle(fontSize: 18.0),
+//               ),
+//               SizedBox(height: 10.0),
+//               Text(
+//                 'Date: ${booking.date}',
+//                 style: TextStyle(fontSize: 18.0),
+//               ),
+//               SizedBox(height: 10.0),
+//               Text(
+//                 'Number of Persons: ${booking.numberOfPersons}',
+//                 style: TextStyle(fontSize: 18.0),
+//               ),
+//               SizedBox(height: 10.0),
+//               Text(
+//                 'Decoration Type: ${booking.decorationType}',
+//                 style: TextStyle(fontSize: 18.0),
+//               ),
+//               SizedBox(height: 10.0),
+//               Text(
+//                 'Event Type: ${booking.eventType}',
+//                 style: TextStyle(fontSize: 18.0),
+//               ),
+//               SizedBox(height: 10.0),
+//               Text(
+//                 'Menu: ${booking.menu}',
+//                 style: TextStyle(fontSize: 18.0),
+//               ),
+//               SizedBox(height: 20.0),
+//               Row(
+//                 mainAxisAlignment: MainAxisAlignment.end,
+//                 children: [
+//                   TextButton(
+//                     onPressed: () => Navigator.pop(context),
+//                     child: Text(
+//                       'Close',
+//                       style: TextStyle(
+//                         color: Colors.black87,
+//                         fontSize: 18.0,
+//                         fontWeight: FontWeight.bold,
+//                       ),
+//                     ),
+//                   ),
+//                 ],
+//               ),
+//             ],
+//           ),
+//         ),
+//       );
+//     },
+//   );
+//
+// }
+//
+// class Bookings{
+//   final int id;
+//   final DateTime date;
+//   final int numberOfPersons;
+//   final String decorationType;
+//   final String eventType;
+//   final String menu;
+//
+//   Bookings({
+//     required this.id,
+//     required this.date,
+//     required this.numberOfPersons,
+//     required this.decorationType,
+//     required this.eventType,
+//     required this.menu,
+//   });
+// }

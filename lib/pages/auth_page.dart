@@ -15,15 +15,19 @@ class _AuthPageState extends State<AuthPage> {
   bool checkedValue = false;
   bool register = false;
   List textfieldsStrings = [
-    "", //firstName
-    "", //lastName
+    "", //fullName
+    // "", //lastName
+    "", //gender
+    "", //age
     "", //email
     "", //password
     "", //confirmPassword
   ];
 
-  final _firstnamekey = GlobalKey<FormState>();
-  final _lastNamekey = GlobalKey<FormState>();
+  final _fullname = GlobalKey<FormState>();
+  // final _lastNamekey = GlobalKey<FormState>();
+  final _genderkey = GlobalKey<FormState>();
+  final _agekey = GlobalKey<FormState>();
   final _emailKey = GlobalKey<FormState>();
   final _passwordKey = GlobalKey<FormState>();
   final _confirmPasswordKey = GlobalKey<FormState>();
@@ -91,12 +95,15 @@ class _AuthPageState extends State<AuthPage> {
                         padding: EdgeInsets.only(top: size.height * 0.01),
                       ),
                       register
-                          ? buildTextField(
-                              "First Name",
+                          ?
+                        Form(child: Column(
+                          children: [
+                            buildTextField(
+                              "Full Name",
                               Icons.person_outlined,
                               false,
                               size,
-                              (valuename) {
+                                  (valuename) {
                                 if (valuename.length <= 2) {
                                   buildSnackError(
                                     'Invalid name',
@@ -107,21 +114,41 @@ class _AuthPageState extends State<AuthPage> {
                                 }
                                 return null;
                               },
-                              _firstnamekey,
+                              _fullname,
                               0,
                               isDarkMode,
-                            )
-                          : Container(),
-                      register
-                          ? buildTextField(
-                              "Last Name",
+                            ),
+
+                            // buildTextField(
+                            //   "Last Name",
+                            //   Icons.person_outlined,
+                            //   false,
+                            //   size,
+                            //       (valuesurname) {
+                            //     if (valuesurname.length <= 2) {
+                            //       buildSnackError(
+                            //         'Invalid last name',
+                            //         context,
+                            //         size,
+                            //       );
+                            //       return '';
+                            //     }
+                            //     return null;
+                            //   },
+                            //   _lastNamekey,
+                            //   1,
+                            //   isDarkMode,
+                            // ),
+                            buildTextField(
+                              "Gender",
                               Icons.person_outlined,
                               false,
                               size,
-                              (valuesurname) {
-                                if (valuesurname.length <= 2) {
+                                  (valuegender) {
+                                if (valuegender.toString().toLowerCase()== "male" ||
+                                    valuegender.toString().toLowerCase()=='female') {
                                   buildSnackError(
-                                    'Invalid last name',
+                                    'Gender should be either male or female',
                                     context,
                                     size,
                                   );
@@ -129,103 +156,115 @@ class _AuthPageState extends State<AuthPage> {
                                 }
                                 return null;
                               },
-                              _lastNamekey,
+                              _genderkey,
                               1,
                               isDarkMode,
-                            )
-                          : Container(),
-                      Form(
-                        child: buildTextField(
-                          "Email",
-                          Icons.email_outlined,
-                          false,
-                          size,
-                          (valuemail) {
-                            if (valuemail.length < 5) {
-                              buildSnackError(
-                                'Invalid email',
-                                context,
-                                size,
-                              );
-                              return '';
-                            }
-                            if (!RegExp(
+                            ),
+                            buildTextField(
+                              "Age",
+                              Icons.person_outlined,
+                              false,
+                              size,
+                                  (age) {
+                                if (int.parse(age.toString())>0 && int.parse(age.toString())<100) {
+                                  buildSnackError(
+                                    'age should be (0-99)',
+                                    context,
+                                    size,
+                                  );
+                                  return '';
+                                }
+                                return null;
+                              },
+                              _agekey,
+                              2,
+                              isDarkMode,
+                            ),
+
+                            buildTextField(
+                              "Email",
+                              Icons.email_outlined,
+                              false,
+                              size,
+                                  (valuemail) {
+                                if (valuemail.length < 5) {
+                                  buildSnackError(
+                                    'Invalid email',
+                                    context,
+                                    size,
+                                  );
+                                  return '';
+                                }
+                                if (!RegExp(
                                     r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+.[a-zA-Z]+")
-                                .hasMatch(valuemail)) {
-                              buildSnackError(
-                                'Invalid email',
-                                context,
-                                size,
-                              );
-                              return '';
-                            }
-                            return null;
-                          },
-                          _emailKey,
-                          2,
-                          isDarkMode,
-                        ),
-                      ),
-                      Form(
-                        child: buildTextField(
-                          "Passsword",
-                          Icons.lock_outline,
-                          true,
-                          size,
-                          (valuepassword) {
-                            if (valuepassword.length < 6) {
-                              buildSnackError(
-                                'Invalid password',
-                                context,
-                                size,
-                              );
-                              return '';
-                            }
-                            return null;
-                          },
-                          _passwordKey,
-                          3,
-                          isDarkMode,
-                        ),
-                      ),
-                      Form(
-                        child: register
-                            ? buildTextField(
-                                "Confirm Passsword",
-                                Icons.lock_outline,
-                                true,
-                                size,
-                                (valuepassword) {
-                                  if (valuepassword != textfieldsStrings[3]) {
-                                    buildSnackError(
-                                      'Passwords must match',
-                                      context,
-                                      size,
-                                    );
-                                    return '';
-                                  }
-                                  return null;
-                                },
-                                _confirmPasswordKey,
-                                4,
-                                isDarkMode,
-                              )
-                            : Container(),
-                      ),
-                      Padding(
-                        padding: EdgeInsets.symmetric(
-                          horizontal: size.width * 0.015,
-                          vertical: size.height * 0.025,
-                        ),
-                        child: register
-                            ? CheckboxListTile(
+                                    .hasMatch(valuemail)) {
+                                  buildSnackError(
+                                    'Invalid email',
+                                    context,
+                                    size,
+                                  );
+                                  return '';
+                                }
+                                return null;
+                              },
+                              _emailKey,
+                              3,
+                              isDarkMode,
+                            ),
+                            buildTextField(
+                              "Password",
+                              Icons.lock_outline,
+                              true,
+                              size,
+                                  (valuepassword) {
+                                if (valuepassword.length < 6) {
+                                  buildSnackError(
+                                    'Invalid password',
+                                    context,
+                                    size,
+                                  );
+                                  return '';
+                                }
+                                return null;
+                              },
+                              _passwordKey,
+                              4,
+                              isDarkMode,
+                            ),
+                            buildTextField(
+                              "Confirm Passsword",
+                              Icons.lock_outline,
+                              true,
+                              size,
+                                  (valuepassword) {
+                                if (valuepassword != textfieldsStrings[4]) {
+                                  buildSnackError(
+                                    'Passwords must match',
+                                    context,
+                                    size,
+                                  );
+                                  return '';
+                                }
+                                return null;
+                              },
+                              _confirmPasswordKey,
+                              5,
+                              isDarkMode,
+                            ),
+                            Padding(
+                              padding: EdgeInsets.symmetric(
+                                horizontal: size.width * 0.015,
+                                vertical: size.height * 0.025,
+                              ),
+                              child: register
+                                  ? CheckboxListTile(
                                 title: RichText(
                                   textAlign: TextAlign.left,
                                   text: TextSpan(
                                     children: [
                                       TextSpan(
                                         text:
-                                            "By creating an account, you agree to our ",
+                                        "By creating an account, you agree to our ",
                                         style: TextStyle(
                                           color: const Color(0xffADA4A5),
                                           fontSize: size.height * 0.015,
@@ -242,7 +281,7 @@ class _AuthPageState extends State<AuthPage> {
                                             style: TextStyle(
                                               color: const Color(0xffADA4A5),
                                               decoration:
-                                                  TextDecoration.underline,
+                                              TextDecoration.underline,
                                               fontSize: size.height * 0.015,
                                             ),
                                           ),
@@ -266,7 +305,7 @@ class _AuthPageState extends State<AuthPage> {
                                             style: TextStyle(
                                               color: const Color(0xffADA4A5),
                                               decoration:
-                                                  TextDecoration.underline,
+                                              TextDecoration.underline,
                                               fontSize: size.height * 0.015,
                                             ),
                                           ),
@@ -283,15 +322,15 @@ class _AuthPageState extends State<AuthPage> {
                                   });
                                 },
                                 controlAffinity:
-                                    ListTileControlAffinity.leading,
+                                ListTileControlAffinity.leading,
                               )
-                            : InkWell(
+                                  : InkWell(
                                 onTap: () {
                                   Navigator.push(
                                     context,
                                     MaterialPageRoute(
                                         builder: (context) =>
-                                            const ForgotPasswordPage()),
+                                        const ForgotPasswordPage()),
                                   );
                                 },
                                 child: Text(
@@ -303,7 +342,76 @@ class _AuthPageState extends State<AuthPage> {
                                   ),
                                 ),
                               ),
-                      ),
+                            ),
+
+
+                          ],
+                        )):
+                        Form(child:Column(
+                          children: [
+                            buildTextField(
+                              "Email",
+                              Icons.email_outlined,
+                              false,
+                              size,
+                                  (valuemail) {
+                                if (valuemail.length < 5) {
+                                  buildSnackError(
+                                    'Invalid email',
+                                    context,
+                                    size,
+                                  );
+                                  return '';
+                                }
+                                if (!RegExp(
+                                    r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+.[a-zA-Z]+")
+                                    .hasMatch(valuemail)) {
+                                  buildSnackError(
+                                    'Invalid email',
+                                    context,
+                                    size,
+                                  );
+                                  return '';
+                                }
+                                return null;
+                              },
+                              _emailKey,
+                              3,
+                              isDarkMode,
+                            ),
+                            buildTextField(
+                              "Password",
+                              Icons.lock_outline,
+                              true,
+                              size,
+                                  (valuepassword) {
+                                if (valuepassword.length < 6) {
+                                  buildSnackError(
+                                    'Invalid password',
+                                    context,
+                                    size,
+                                  );
+                                  return '';
+                                }
+                                return null;
+                              },
+                              _passwordKey,
+                              4,
+                              isDarkMode,
+                            ),
+                          ],
+                        ),
+
+
+                        )
+                      ,
+
+
+
+
+
+
+
                       AnimatedPadding(
                         duration: const Duration(milliseconds: 500),
                         padding: register
@@ -313,9 +421,9 @@ class _AuthPageState extends State<AuthPage> {
                           text: register ? "Register" : "Login",
                           backColor: isDarkMode
                               ? [
-                                  Colors.black,
-                                  Colors.black,
-                                ]
+                            Colors.black,
+                            Colors.black,
+                          ]
                               : const [Color(0xff92A3FD), Color(0xff9DCEFF)],
                           textColor: const [
                             Colors.white,
@@ -324,8 +432,8 @@ class _AuthPageState extends State<AuthPage> {
                           onPressed: () async {
                             if (register) {
                               //validation for register
-                              if (_firstnamekey.currentState!.validate()) {
-                                if (_lastNamekey.currentState!.validate()) {
+                              if (_fullname.currentState!.validate()) {
+                                // if (_lastNamekey.currentState!.validate()) {
                                   if (_emailKey.currentState!.validate()) {
                                     if (_passwordKey.currentState!.validate()) {
                                       if (_confirmPasswordKey.currentState!
@@ -337,9 +445,9 @@ class _AuthPageState extends State<AuthPage> {
                                               size);
                                         } else {
                                           print('register');
-                                          print(textfieldsStrings[2]);
                                           print(textfieldsStrings[3]);
-                                          String? error=await AuthService().createUserWithEmail(textfieldsStrings[2], textfieldsStrings[3]);
+                                          print(textfieldsStrings[4]);
+                                          String? error=await AuthService().createUserWithEmail(textfieldsStrings[3], textfieldsStrings[4],textfieldsStrings[0],textfieldsStrings[1],int.parse(textfieldsStrings[2]));
                                           if(error==null){
                                             buildSnackError("Account Created Successfully!", context, size);
                                           }
@@ -349,21 +457,22 @@ class _AuthPageState extends State<AuthPage> {
                                       }
                                     }
                                   }
-                                }
+                                // }
                               }
                             } else {
                               //validation for login
                               if (_emailKey.currentState!.validate()) {
                                 if (_passwordKey.currentState!.validate()) {
                                   print('login');
-                                  String? status= await AuthService().authenticateUserWithEmail(textfieldsStrings[2], textfieldsStrings[3]);
-                                  buildSnackError(status??"", context, size);
+                                  String? status= await AuthService().authenticateUserWithEmail(textfieldsStrings[3], textfieldsStrings[4]);
+                                  buildSnackError(status??"error", context, size);
                                 }
                               }
                             }
-                           },
+                          },
                         ),
                       ),
+
                       AnimatedPadding(
                         duration: const Duration(milliseconds: 500),
                         padding: EdgeInsets.only(
