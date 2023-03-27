@@ -21,7 +21,7 @@ List<Event> events = [
   Event(
       name: "Wedding",
       description: "The beginning of your forever",
-      imageUrl: "assets/wedding.jpg"),
+      imageUrl: "assets/w.jpg"),
   Event(
       name: "Seminars",
       description: "Music and good vibes",
