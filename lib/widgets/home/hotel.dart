@@ -160,8 +160,7 @@ class _HotelState extends State<HotelCard> {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          SizedBox(
-                            width: size.width * 0.5,
+                          Expanded(
                             child: Text(
                               hotel.name ?? "",
                               maxLines: 1,
@@ -174,7 +173,7 @@ class _HotelState extends State<HotelCard> {
                               ),
                             ),
                           ),
-                          SizedBox(
+                          Expanded(
                             child: Text(
                               hotel.location!.toUpperCase(),
                               textAlign: TextAlign.right,

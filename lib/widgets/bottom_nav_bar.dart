@@ -8,10 +8,9 @@ import 'package:unicons/unicons.dart';
 
 import '../pages/userInfo.dart';
 
-
 Widget buildBottomNavBar(int currIndex, Size size, bool isDarkMode) {
   return BottomNavigationBar(
-    iconSize: size.width * 0.08,
+    iconSize: size.width > 550 ? size.width * 0.022 : size.width * 0.08,
     elevation: 0,
     selectedLabelStyle: const TextStyle(fontSize: 8),
     unselectedLabelStyle: const TextStyle(fontSize: 0),
@@ -23,16 +22,16 @@ Widget buildBottomNavBar(int currIndex, Size size, bool isDarkMode) {
     onTap: (value) {
       if (value != currIndex) {
         if (value == 0) {
-          Get.off(()=>HomePage());
+          Get.off(() => HomePage());
         }
-        if(value==1){
-          Get.off(()=>FavoritesPage());
+        if (value == 1) {
+          Get.off(() => FavoritesPage());
         }
-        if(value==2){
-          Get.off(()=> const BookingsList());
+        if (value == 2) {
+          Get.off(() => const BookingsList());
         }
-        if(value==3){
-          Get.off(()=>const UserInformationScreen());
+        if (value == 3) {
+          Get.off(() => const UserInformationScreen());
         }
       }
     },

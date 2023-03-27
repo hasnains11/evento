@@ -22,6 +22,7 @@ Column buildHotelSearch(Color defaultColor, Size size, List<Hotel> hotels) {
             fontSize: size.height * 0.025,
             fontWeight: FontWeight.bold,
           ),
+          textAlign: size.width > 550 ? TextAlign.center : TextAlign.left,
         ),
       ],
     ),
@@ -30,7 +31,7 @@ Column buildHotelSearch(Color defaultColor, Size size, List<Hotel> hotels) {
         vertical: size.height * 0.025,
       ),
       child: SizedBox(
-          width: size.width * 0.85,
+          width: size.width > 550 ? size.width * .50 : size.width * 0.85,
           child: ListView.builder(
             itemCount: hotels.length,
             primary: false,

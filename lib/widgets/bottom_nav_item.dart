@@ -4,8 +4,8 @@ BottomNavigationBarItem buildBottomNavItem(
     IconData icon, bool isDarkMode, Size size) {
   return BottomNavigationBarItem(
     icon: SizedBox(
-      height: size.width * 0.12,
-      width: size.width * 0.12,
+      // height: size.width * 0.12,
+      // width: size.width * 0.12,
       child: Container(
         decoration: BoxDecoration(
           color: isDarkMode

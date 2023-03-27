@@ -68,7 +68,7 @@ class _HomePageState extends State<HomePage> {
       body: Center(
         child: Container(
           height: size.height,
-          width: size.height,
+          width: size.width,
           decoration: BoxDecoration(
             color: isDarkMode
                 ? const Color(0xff06090d)
