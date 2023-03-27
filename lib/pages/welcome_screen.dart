@@ -1,24 +1,31 @@
+import 'package:evento/controllers/booking_controller.dart';
 import 'package:evento/pages/events_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class WelcomeScreen extends StatelessWidget {
+class WelcomeScreen extends StatefulWidget {
   const WelcomeScreen({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
-    return
+  State<WelcomeScreen> createState() => _WelcomeScreenState();
+}
 
-      Scaffold(
-        appBar: AppBar(
-          backgroundColor: Colors.black,
-          bottomOpacity: 0.0,
+class _WelcomeScreenState extends State<WelcomeScreen> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.black,
+        bottomOpacity: 0.0,
         centerTitle: true,
-          title: Text('Welcome',
-          style: TextStyle(fontSize:Get.height *0.03),),
+        title: Text(
+          'Welcome',
+          style: TextStyle(fontSize: Get.height * 0.03),
         ),
-        body: Container(
-          padding: EdgeInsets.symmetric(horizontal: 10),
+      ),
+      body: Container(
+        width: Get.width,
+        padding: EdgeInsets.symmetric(horizontal: 10),
         decoration: BoxDecoration(
           image: DecorationImage(
             image: AssetImage("assets/heroimage.jpg"),
@@ -26,20 +33,19 @@ class WelcomeScreen extends StatelessWidget {
           ),
         ),
         child: Column(
-
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
             SizedBox(
               height: Get.height * 0.06,
             ),
-            Text('Evento',style:
-                TextStyle(
-                  fontSize: Get.height * 0.03,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.white,
-
-                )
-              ,),
+            Text(
+              'Evento',
+              style: TextStyle(
+                fontSize: Get.height * 0.03,
+                fontWeight: FontWeight.bold,
+                color: Colors.white,
+              ),
+            ),
             SizedBox(
               height: Get.height * 0.1,
             ),
@@ -57,21 +63,22 @@ class WelcomeScreen extends StatelessWidget {
                 ),
               ),
             ),
-            SizedBox(height:Get.height *0.02),
-            Text("Every Event Should be perfected",
-            style: TextStyle(
-              fontSize: Get.height * 0.023,
-              fontWeight: FontWeight.bold,
-              color: Colors.white,
-              backgroundColor: Colors.black.withOpacity(0.2),
-
-            ),),
+            SizedBox(height: Get.height * 0.02),
+            Text(
+              "Every Event Should be perfected",
+              style: TextStyle(
+                fontSize: Get.height * 0.023,
+                fontWeight: FontWeight.bold,
+                color: Colors.white,
+                backgroundColor: Colors.black.withOpacity(0.2),
+              ),
+            ),
             SizedBox(
-              height: Get.height *0.12,
+              height: Get.height * 0.12,
             ),
             ElevatedButton(
               onPressed: () {
-                Get.to(() => EventScreen());
+                Get.off(() => EventScreen());
               },
               child: Text(
                 "Explore Events",
@@ -80,11 +87,11 @@ class WelcomeScreen extends StatelessWidget {
               style: ElevatedButton.styleFrom(
                 primary: Colors.pink[200],
                 padding: EdgeInsets.symmetric(
-                  horizontal: Get.width *0.14,
-                  vertical: Get.height *0.02,
+                  horizontal: Get.width * 0.14,
+                  vertical: Get.height * 0.02,
                 ),
                 textStyle: TextStyle(
-                  fontSize: 30,
+                  fontSize: Get.height * 0.03,
                   fontWeight: FontWeight.bold,
                 ),
                 shape: RoundedRectangleBorder(
@@ -94,7 +101,13 @@ class WelcomeScreen extends StatelessWidget {
             ),
           ],
         ),
-    ),
-      );
+      ),
+    );
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    Get.put(BookingController());
   }
 }

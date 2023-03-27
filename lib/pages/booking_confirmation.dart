@@ -31,17 +31,17 @@ class _BookingConfirmationPageState extends State<BookingConfirmationPage> {
             mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-          Center(
-          child: Text(
-          'Booking Confirmation',
-            style: TextStyle(
-              fontSize: 20,
-              fontWeight: FontWeight.bold,
-              color: Colors.blue[900],
-            ),
-          ),
-        ),
-        SizedBox(height: 12),
+              Center(
+                child: Text(
+                  'Booking Confirmation',
+                  style: TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.blue[900],
+                  ),
+                ),
+              ),
+              SizedBox(height: 12),
               Text(
                 'Hotel Name:',
                 style: TextStyle(
@@ -54,7 +54,8 @@ class _BookingConfirmationPageState extends State<BookingConfirmationPage> {
                     fontWeight: FontWeight.bold,
                     fontSize: 18,
                   )),
-              SizedBox(height: 12), Text(
+              SizedBox(height: 12),
+              Text(
                 'Event Type:',
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
@@ -67,61 +68,58 @@ class _BookingConfirmationPageState extends State<BookingConfirmationPage> {
                     fontSize: 18,
                   )),
               SizedBox(height: 12),
-
-        Text(
-          'Date:',
-          style: TextStyle(
-            fontWeight: FontWeight.bold,
-            color: Colors.blue[900],
-          ),
-        ),
-        Text('${widget.booking.date}',
-            style: TextStyle(
-              fontWeight: FontWeight.bold,
-              fontSize: 18,
-            )),
-        SizedBox(height: 12),
-        Text(
-          'Number of Persons:',
-          style: TextStyle(
-            fontWeight: FontWeight.bold,
-            color: Colors.blue[900],
-          ),
-        ),
-        Text('${widget.booking.numberOfPersons}',
-            style: TextStyle(
-              fontWeight: FontWeight.bold,
-              fontSize: 18,
-            )),
-        SizedBox(height: 12),
-        Text(
-          'Decoration Type:',
-          style: TextStyle(
-            fontWeight: FontWeight.bold,
-            color: Colors.blue[900],
-          ),
-        ),
-        Text('${widget.booking.decorationType}',
-            style: TextStyle(
-              fontWeight: FontWeight.bold,
-              fontSize: 18,
-            )),
-        SizedBox(height: 12),
-        Text(
-          'Menu:',
-          style: TextStyle(
-            fontWeight: FontWeight.bold,
-            color: Colors.blue[900],
-          ),
-        ),
-        Text('${widget.booking.menu.items.join(', ')}',
-            style: TextStyle(
-              fontWeight: FontWeight.bold,
-              fontSize: 18,
-            )),
-        SizedBox(height: 16),
-
-
+              Text(
+                'Date:',
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  color: Colors.blue[900],
+                ),
+              ),
+              Text('${widget.booking.date}',
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 18,
+                  )),
+              SizedBox(height: 12),
+              Text(
+                'Number of Persons:',
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  color: Colors.blue[900],
+                ),
+              ),
+              Text('${widget.booking.numberOfPersons}',
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 18,
+                  )),
+              SizedBox(height: 12),
+              Text(
+                'Decoration Type:',
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  color: Colors.blue[900],
+                ),
+              ),
+              Text('${widget.booking.decorationType}',
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 18,
+                  )),
+              SizedBox(height: 12),
+              Text(
+                'Menu:',
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  color: Colors.blue[900],
+                ),
+              ),
+              Text('${widget.booking.menu.items.join(', ')}',
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 18,
+                  )),
+              SizedBox(height: 16),
               Text(
                 'Total Bill:',
                 style: TextStyle(
@@ -135,7 +133,6 @@ class _BookingConfirmationPageState extends State<BookingConfirmationPage> {
                     fontSize: 18,
                   )),
               SizedBox(height: 24),
-
               Text(
                 'Payment Method:',
                 style: TextStyle(
@@ -149,55 +146,44 @@ class _BookingConfirmationPageState extends State<BookingConfirmationPage> {
                     fontSize: 18,
                   )),
               SizedBox(height: 24),
-
-
-
-
-
-
               _isLoading
-            ? Center(child: CircularProgressIndicator())
-            : Align(
-          alignment: Alignment.center,
-          child: ElevatedButton(
-            onPressed: () async {
-              setState(() {
-                _isLoading = true;
-              });
+                  ? Center(child: CircularProgressIndicator())
+                  : Align(
+                      alignment: Alignment.center,
+                      child: ElevatedButton(
+                        onPressed: () async {
+                          setState(() {
+                            _isLoading = true;
+                          });
 
-              try {
-                await FirestoreService().createBooking(widget.booking);
-                Get.off(() => BookingsList());
-                Get.snackbar(
-                    "Booking Confirmed", "Your booking has been confirmed");
-              }
-              catch (e) {
-                Get.snackbar('Error', 'Something went wrong');
-                Navigator.of(context).pop();
-              }
-            },
-            child: Text('Confirm Booking',
-            style: TextStyle(
-              fontWeight: FontWeight.bold,
-              fontSize: 16,
-            ),
-          ),
-          style: ElevatedButton.styleFrom(
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(8),
-            ),
+                          try {
+                            // await FirestoreService().createBooking(widget.booking);
+                            Get.off(() => BookingsList());
+                            Get.snackbar("Booking Confirmed",
+                                "Your booking has been confirmed");
+                          } catch (e) {
+                            Get.snackbar('Error', 'Something went wrong');
+                            Navigator.of(context).pop();
+                          }
+                        },
+                        child: Text(
+                          'Confirm Booking',
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 16,
+                          ),
+                        ),
+                        style: ElevatedButton.styleFrom(
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(8),
+                          ),
+                        ),
+                      ),
+                    ),
+            ],
           ),
         ),
-    ),
-            ]
-    ,
-    )
-    ,
-    ),
-      )
-    ,
+      ),
     );
   }
 }
-
-

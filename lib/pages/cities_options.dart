@@ -2,15 +2,17 @@ import 'package:evento/pages/home_page.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class OptionsScreen extends StatelessWidget {
-  const OptionsScreen({Key? key}) : super(key: key);
+import '../controllers/booking_controller.dart';
 
+class OptionsScreen extends StatelessWidget {
+  OptionsScreen({Key? key}) : super(key: key);
+  final bookingController = Get.find<BookingController>();
 
   @override
   Widget build(BuildContext context) {
     print(Get.arguments);
     return Scaffold(
-       backgroundColor: Colors.white12,
+      backgroundColor: Colors.white12,
       appBar: AppBar(
         backgroundColor: Colors.black,
         centerTitle: true,
@@ -19,15 +21,13 @@ class OptionsScreen extends StatelessWidget {
       body: Container(
         alignment: Alignment.center,
         child: SizedBox(
-          height: Get.height*0.8,
-
+          height: Get.height * 0.8,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-
               Expanded(
                 child: Card(
-                  shape:  RoundedRectangleBorder(
+                  shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(14.0),
                   ),
                   margin: EdgeInsets.all(16.0),
@@ -35,15 +35,21 @@ class OptionsScreen extends StatelessWidget {
                   child: InkWell(
                     onTap: () {
                       // Add action when card is tapped
-                      Get.to(()=>HomePage(),arguments:{"location":"Islamabad",...Get.arguments});
+                      Get.to(() => HomePage(), arguments: {
+                        "location": "Islamabad",
+                        ...Get.arguments
+                      });
+                      bookingController.addItem({"location": "Islamabad"});
+                      // await bookingController.setHotelList();
                     },
                     child: Container(
                       decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(14),
+                        borderRadius: BorderRadius.circular(14),
                         image: DecorationImage(
                           image: AssetImage('assets/Islamabad.jpeg'),
                           colorFilter: ColorFilter.mode(
-                              Colors.black.withOpacity(0.9),BlendMode.difference),
+                              Colors.black.withOpacity(0.9),
+                              BlendMode.difference),
                           fit: BoxFit.cover,
                         ),
                       ),
@@ -54,22 +60,23 @@ class OptionsScreen extends StatelessWidget {
                             Text(
                               'View Hotels in Islamabad',
                               style: TextStyle(
-                                fontSize: Get.height*0.03,
+                                fontSize: Get.height * 0.03,
                                 fontWeight: FontWeight.bold,
                                 color: Colors.white,
                                 backgroundColor: Colors.black.withOpacity(0.16),
                               ),
-
                             ),
-                            SizedBox(height: Get.height*0.01,),
-                            Text("click here to view hotels",
-                            style: TextStyle(
+                            SizedBox(
+                              height: Get.height * 0.01,
+                            ),
+                            Text(
+                              "click here to view hotels",
+                              style: TextStyle(
                                 fontWeight: FontWeight.bold,
                                 color: Colors.white,
-                                fontSize: Get.height*0.014,
-                              backgroundColor: Colors.black.withOpacity(0.16),
-                            ),
-
+                                fontSize: Get.height * 0.014,
+                                backgroundColor: Colors.black.withOpacity(0.16),
+                              ),
                             )
                           ],
                         ),
@@ -80,7 +87,7 @@ class OptionsScreen extends StatelessWidget {
               ),
               Expanded(
                 child: Card(
-                  shape:  RoundedRectangleBorder(
+                  shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(14.0),
                   ),
                   margin: EdgeInsets.all(16.0),
@@ -88,15 +95,20 @@ class OptionsScreen extends StatelessWidget {
                   child: InkWell(
                     onTap: () {
                       // Add action when card is tapped
-                      Get.to(()=>HomePage(),arguments:{"location":"Rawalpindi",...Get.arguments});
+                      Get.to(() => HomePage(), arguments: {
+                        "location": "Rawalpindi",
+                        ...Get.arguments
+                      });
+                      bookingController.addItem({"location": "Rawalpindi"});
                     },
                     child: Container(
                       decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(14),
+                        borderRadius: BorderRadius.circular(14),
                         image: DecorationImage(
                           image: AssetImage('assets/rawalpindi.jpg'),
                           colorFilter: ColorFilter.mode(
-                              Colors.black.withOpacity(0.9), BlendMode.difference),
+                              Colors.black.withOpacity(0.9),
+                              BlendMode.difference),
                           fit: BoxFit.cover,
                         ),
                       ),
@@ -107,22 +119,23 @@ class OptionsScreen extends StatelessWidget {
                             Text(
                               'View Hotels in Rawalpindi',
                               style: TextStyle(
-                                fontSize: Get.height*0.03,
+                                fontSize: Get.height * 0.03,
                                 fontWeight: FontWeight.bold,
                                 color: Colors.white,
                                 backgroundColor: Colors.black.withOpacity(0.16),
                               ),
-
                             ),
-                            SizedBox(height: Get.height*0.01,),
-                            Text("click here to view hotels",
-                            style: TextStyle(
+                            SizedBox(
+                              height: Get.height * 0.01,
+                            ),
+                            Text(
+                              "click here to view hotels",
+                              style: TextStyle(
                                 fontWeight: FontWeight.bold,
                                 color: Colors.white,
-                                fontSize: Get.height*0.014,
-                              backgroundColor: Colors.black.withOpacity(0.16),
-                            ),
-
+                                fontSize: Get.height * 0.014,
+                                backgroundColor: Colors.black.withOpacity(0.16),
+                              ),
                             )
                           ],
                         ),

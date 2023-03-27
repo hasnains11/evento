@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../../models/Hotels.dart';
+import '../../pages/booking/check_availability.dart';
 
 Widget buildDetailsBottomBar(
   Hotel hotel,
@@ -73,7 +74,7 @@ Widget buildDetailsBottomBar(
               ),
             ),
           ), //TODO: add book now action
-          onTap: () => Get.to(BookingPage(hotel: hotel,)
+          onTap: () => Get.to(()=>CheckAvailabilityPage()
           ),
         )
       ],

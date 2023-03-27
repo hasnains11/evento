@@ -1,3 +1,4 @@
+import 'package:evento/pages/welcome_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -14,167 +15,198 @@ class BookingsList extends StatefulWidget {
 }
 
 class _BookingsListState extends State<BookingsList> {
-    bool _isLoading = false;
+  bool _isLoading = false;
 
   late var _bookings;
 
-  _cancelBooking(String bookingId,String hotelId,String date) async{
-    await FirestoreService().deleteBooking(bookingId,hotelId,date);
+  _cancelBooking(String bookingId, String hotelId, String date) async {
+    await FirestoreService().deleteBooking(bookingId, hotelId, date);
     ScaffoldMessenger.of(context).showSnackBar(SnackBar(
       content: Text('Booking cancelled'),
       duration: Duration(seconds: 2),
     ));
-     _fetchBookings();
-
+    _fetchBookings();
   }
 
-    @override
+  @override
   void initState() {
     super.initState();
     _fetchBookings();
   }
 
   void _fetchBookings() async {
-      setState(() {
-        _isLoading = true;
-      });
+    setState(() {
+      _isLoading = true;
+    });
 
-      // Simulate fetching bookings from Firestore
-      var bookings=await FirestoreService().getBookings();
-         print(bookings);
-      setState(() {
-        _isLoading = false;
-        _bookings=bookings;
-      });
-
-    }
-
+    // Simulate fetching bookings from Firestore
+    var bookings = await FirestoreService().getBookings();
+    print(bookings);
+    setState(() {
+      _isLoading = false;
+      _bookings = bookings;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
-
-
     return Scaffold(
-      bottomNavigationBar: buildBottomNavBar(2,Get.size,true),
-        drawer:SideDrawer(index: 2,),
+        bottomNavigationBar: buildBottomNavBar(2, Get.size, true),
+        floatingActionButton: FloatingActionButton(
+          onPressed: () {
+            Get.off(() => WelcomeScreen());
+          },
+          child: Icon(Icons.add),
+        ),
+        drawer: SideDrawer(
+          index: 2,
+        ),
         appBar: AppBar(
           title: Text('Bookings List'),
           centerTitle: true,
         ),
-        body:_isLoading ? Center(child: CircularProgressIndicator()):
-        _bookings?.isEmpty ?? true
-            ? Center(child: Text('No Bookings Yet'))
-            :
-        ListView.builder(
-          itemCount: _bookings?.length,
+        body: _isLoading
+            ? Center(child: CircularProgressIndicator())
+            : _bookings?.isEmpty ?? true
+                ? Center(child: Text('No Bookings Yet'))
+                : ListView.builder(
+                    itemCount: _bookings?.length,
+                    itemBuilder: (BuildContext context, int index) {
+                      Map booking = _bookings?.elementAt(index) ?? {};
+                      return Card(
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(15.0),
+                        ),
+                        elevation: 4.0,
+                        margin: EdgeInsets.symmetric(
+                            horizontal: 10.0, vertical: 6.0),
+                        child: Column(children: [
+                          Container(
+                              width: double.infinity,
+                              alignment: Alignment.center,
+                              child: Column(
+                                children: [
+                                  ClipRRect(
+                                    borderRadius: BorderRadius.only(
+                                        topLeft: Radius.circular(15.0),
+                                        topRight: Radius.circular(15.0)),
+                                    child: Image.network(
+                                      '${booking['hotelImg']}',
+                                      fit: BoxFit.cover,
+                                      loadingBuilder: (BuildContext context,
+                                          Widget child,
+                                          ImageChunkEvent? loadingProgress) {
+                                        if (loadingProgress == null) {
+                                          return child;
+                                        }
+                                        return Center(
+                                          child: CircularProgressIndicator(
+                                            value: loadingProgress
+                                                        .expectedTotalBytes !=
+                                                    null
+                                                ? loadingProgress
+                                                        .cumulativeBytesLoaded /
+                                                    loadingProgress
+                                                        .expectedTotalBytes!
+                                                : null,
+                                          ),
+                                        );
+                                      },
+                                    ),
+                                  ),
+                                  Text('booking id:${booking['id']}'),
+                                ],
+                              )),
+                          ListTile(
+                            // contentPadding: EdgeInsets.symmetric(horizontal: 10.0, vertical: 10.0),
 
-          itemBuilder: (BuildContext context, int index) {
-            Map booking = _bookings?.elementAt(index)??{};
-            return Card(
-              elevation: 4.0,
-              margin: EdgeInsets.symmetric(horizontal: 10.0, vertical: 6.0),
-              child: Column(
-                children: [
-                  Container(
-                    width: double.infinity,
-                      alignment: Alignment.center,
-                      decoration: BoxDecoration(color: Colors.green),
-                      child: Column(
-                        children: [
-                          Image.network('${booking['hotelImg']}',
-                            fit: BoxFit.fill,
-                            height: Get.height* 0.2,
-                          ),
-                          Text('booking id:${booking['id']}'),
-                        ],
-                      )),
-                ListTile(
-
-                  // contentPadding: EdgeInsets.symmetric(horizontal: 10.0, vertical: 10.0),
-
-
-                  title: Column(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text('${booking['hotelName']}',style: TextStyle( fontSize: Get.height *0.023, fontWeight: FontWeight.bold),),
-
-                    Text('${booking['eventType'].toString().toUpperCase()}'
-                            ,style: TextStyle( fontSize:Get.height *0.016)),
-
-                  Text('${booking['bookingDate']}',
-                      style: TextStyle( fontSize:Get.height *0.018)),
-                    SizedBox(height: Get.height*0.01),
-
-                      ]),
-                  subtitle: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text('${booking['numberofPerson']} persons'),
-                      Text('${booking['decorationType']}'),
-
-                    ],
-                  ),
-                  trailing:
-                      Column(
-                        children: [
-                          SizedBox(
-                            height: Get.height*0.05,
-                            child: MaterialButton(
-                              onPressed: () async{
-
-                                // Show the dialog box
-                                showDialog(
-                                  context: context,
-                                  builder: (BuildContext context) {
-                                    return AlertDialog(
-                                      title: Text("Confirm Cancel"),
-                                      content: Text("Are you sure you want to cancel this booking?"),
-                                      actions: [
-                                        TextButton(
-                                          child: Text("back"),
-                                          onPressed: () {
-                                            Navigator.of(context).pop();
-                                          },
-                                        ),
-                                        TextButton(
-                                          child: Text("confirm"),
-                                          onPressed: () async{
-                                            // Perform some action here
-                                            await _cancelBooking(booking['id'],booking['hotelId'],booking['bookingDate']);
-                                            print('booking cancelled');
-                                            Navigator.of(context).pop();
-                                          },
-                                        ),
-                                      ],
-                                    );
-                                  },
-                                );
-
-
-
-                              },
-                              color: Colors.red,
-                              textColor: Colors.white,
-                              child: Icon(Icons.cancel_outlined),
-                              padding: EdgeInsets.all(0),
-                              shape: CircleBorder(),
+                            title: Column(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    '${booking['hotelName']}',
+                                    style: TextStyle(
+                                        fontSize: Get.height * 0.023,
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                  Text(
+                                      '${booking['eventType'].toString().toUpperCase()}',
+                                      style: TextStyle(
+                                          fontSize: Get.height * 0.016)),
+                                  Text('${booking['bookingDate']}',
+                                      style: TextStyle(
+                                          fontSize: Get.height * 0.018)),
+                                  SizedBox(height: Get.height * 0.01),
+                                ]),
+                            subtitle: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text('${booking['numberofPerson']} persons'),
+                                Text('Shift ${booking['shift']}'),
+                                Text("Total Bill: Rs.${booking['totalBill']}"),
+                              ],
+                            ),
+                            trailing: Column(
+                              children: [
+                                SizedBox(
+                                  height: Get.height * 0.05,
+                                  child: MaterialButton(
+                                    onPressed: () async {
+                                      // Show the dialog box
+                                      showDialog(
+                                        context: context,
+                                        builder: (BuildContext context) {
+                                          return AlertDialog(
+                                            title: Text("Confirm Cancel"),
+                                            content: Text(
+                                                "Are you sure you want to cancel this booking?"),
+                                            actions: [
+                                              TextButton(
+                                                child: Text("back"),
+                                                onPressed: () {
+                                                  Navigator.of(context).pop();
+                                                },
+                                              ),
+                                              TextButton(
+                                                child: Text("confirm"),
+                                                onPressed: () async {
+                                                  // Perform some action here
+                                                  await _cancelBooking(
+                                                      booking['id'],
+                                                      booking['hotelId'],
+                                                      booking['bookingDate']);
+                                                  print('booking cancelled');
+                                                  Navigator.of(context).pop();
+                                                },
+                                              ),
+                                            ],
+                                          );
+                                        },
+                                      );
+                                    },
+                                    color: Colors.red,
+                                    textColor: Colors.white,
+                                    child: Icon(Icons.cancel_outlined),
+                                    padding: EdgeInsets.all(0),
+                                    shape: CircleBorder(),
+                                  ),
+                                ),
+                                SizedBox(height: Get.height * 0.01),
+                                Text(
+                                  'Cancel Booking',
+                                  style:
+                                      TextStyle(fontSize: Get.height * 0.014),
+                                ),
+                              ],
                             ),
                           ),
-                          SizedBox(height: Get.height*0.01),
-                            Text('Cancel Booking',style: TextStyle(fontSize: Get.height*0.014),),
-                        ],
-                      ),
-
-              ),
-            ]),
-            );
-          },
-        ));
+                        ]),
+                      );
+                    },
+                  ));
   }
 }
-
-
 
 // _showBookingDetailsDialog(BuildContext context ,Booking booking) {
 //   showDialog(

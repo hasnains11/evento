@@ -8,8 +8,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:evento/pages/details_page.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-
-
+import '../../controllers/booking_controller.dart';
 import '../../models/Hotels.dart';
 import '../../services/sharedPref.dart';
 
@@ -18,16 +17,20 @@ class HotelCard extends StatefulWidget {
   Hotel hotel;
   Color defaultColor;
 
-  HotelCard({Key? key,required this.size,required this.hotel,required this.defaultColor}) : super(key: key);
+  HotelCard(
+      {Key? key,
+      required this.size,
+      required this.hotel,
+      required this.defaultColor})
+      : super(key: key);
 
   @override
   State<HotelCard> createState() => _HotelState();
 }
 
 class _HotelState extends State<HotelCard> {
-  List favorites=[];
-  bool isFavorite=false;
-
+  List favorites = [];
+  bool isFavorite = false;
 
   @override
   void initState() {
@@ -35,60 +38,59 @@ class _HotelState extends State<HotelCard> {
     // SharedPrefs.clear();
   }
 
-
-  Future<void> addFavorite(Map<String,dynamic> hotel) async {
-    String currentUserId=AuthService().user?.uid??"";
+  Future<void> addFavorite(Map<String, dynamic> hotel) async {
+    String currentUserId = AuthService().user?.uid ?? "";
     final prefs = await SharedPreferences.getInstance();
-    final favorites = prefs.getStringList(currentUserId)?? [];
+    final favorites = prefs.getStringList(currentUserId) ?? [];
 
-    var encoded_hotel=jsonEncode(hotel);
-    if(favorites.contains(encoded_hotel)){
-    favorites.remove(encoded_hotel);
-    isFavorite=false;
-    }else{
-      isFavorite=true;
+    var encoded_hotel = jsonEncode(hotel);
+    if (favorites.contains(encoded_hotel)) {
+      favorites.remove(encoded_hotel);
+      isFavorite = false;
+    } else {
+      isFavorite = true;
       favorites.add(encoded_hotel);
     }
     print(favorites);
     await prefs.setStringList(currentUserId, favorites);
     setState(() {
-      isFavorite=isFavorite;
+      isFavorite = isFavorite;
     });
   }
 
-
   @override
   Widget build(BuildContext context) {
-    Size size=widget.size;
+    final bookingController = Get.find<BookingController>();
+
+    Size size = widget.size;
     Hotel hotel = widget.hotel;
-    Color defaultColor=widget.defaultColor;
+    Color defaultColor = widget.defaultColor;
 
     SharedPrefs().getFavorites().then((fav_hotels) {
-             bool isFav= favorites.contains(jsonEncode(hotel.toJson()))?true :false;
+      bool isFav =
+          favorites.contains(jsonEncode(hotel.toJson())) ? true : false;
       setState(() {
         favorites = fav_hotels;
-        isFavorite=isFav;
-
+        isFavorite = isFav;
       });
     });
 
-
     return Container(
-
-      decoration: BoxDecoration(border: Border.all(color: Colors.black.withOpacity(0.1)),
+      margin: EdgeInsets.only(bottom: 18),
+      decoration: BoxDecoration(
+          border: Border.all(color: Colors.black.withOpacity(0.1)),
           borderRadius: BorderRadius.circular(15)),
       child: SizedBox(
-
         height: size.height * 0.59,
         width: size.width * 0.85,
         child: InkWell(
-
-          onTap: () => Get.to(
-                () => DetailsPage(
-              hotel: hotel,
-              size: size,
-            ),
-          ),
+          onTap: () {
+            bookingController.addCurrentHotel(widget.hotel);
+            Get.to(() => DetailsPage(
+                  hotel: hotel,
+                  size: size,
+                ));
+          },
           child: Column(
             mainAxisSize: MainAxisSize.max,
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -100,7 +102,7 @@ class _HotelState extends State<HotelCard> {
                     ClipRRect(
                       borderRadius: BorderRadius.circular(15),
                       child: Image.network(
-                        hotel.img??"default.img",
+                        hotel.img ?? "default.img",
                         fit: BoxFit.fill,
                         height: size.height * 0.3,
                         width: size.width * 0.85,
@@ -161,7 +163,7 @@ class _HotelState extends State<HotelCard> {
                           SizedBox(
                             width: size.width * 0.5,
                             child: Text(
-                              hotel.name??"",
+                              hotel.name ?? "",
                               maxLines: 1,
                               overflow: TextOverflow.ellipsis,
                               textAlign: TextAlign.left,
@@ -173,7 +175,6 @@ class _HotelState extends State<HotelCard> {
                             ),
                           ),
                           SizedBox(
-                            width: size.width * 0.3,
                             child: Text(
                               hotel.location!.toUpperCase(),
                               textAlign: TextAlign.right,
@@ -224,46 +225,60 @@ class _HotelState extends State<HotelCard> {
                           ),
                         ),
                       ],
-                    )
-                    ,
+                    ),
                     Divider(),
-                    SizedBox(height: 2,),
+                    SizedBox(
+                      height: 2,
+                    ),
                     Row(
-                      children:[
-                        Text("Capacity",style:TextStyle(fontWeight: FontWeight.w500),),
+                      children: [
+                        Text(
+                          "Capacity",
+                          style: TextStyle(fontWeight: FontWeight.w500),
+                        ),
                         Spacer(),
                         Text("${hotel.capacity} Maximum"),
                       ],
                     ),
-                    SizedBox(height: 3,),
+                    SizedBox(
+                      height: 3,
+                    ),
                     Row(
                       children: [
-                        Text("Services",style:TextStyle(fontWeight: FontWeight.w500),),
+                        Text(
+                          "Services",
+                          style: TextStyle(fontWeight: FontWeight.w500),
+                        ),
                         Spacer(),
                         Text(hotel.services!.join("|")),
                       ],
-                    )
-                    ,
-                    SizedBox(height: 3,),
+                    ),
+                    SizedBox(
+                      height: 3,
+                    ),
                     Divider(),
                     InkWell(
                       splashColor: Colors.grey,
                       splashFactory: InkRipple.splashFactory,
-                      onTap: ()async{ await addFavorite(hotel.toJson());},
+                      onTap: () async {
+                        await addFavorite(hotel.toJson());
+                      },
                       child: Row(
-
                         children: [
-                          Text("Add to Favourites",
-                            style: TextStyle(fontWeight: FontWeight.w500) ,),
+                          Text(
+                            "Add to Favourites",
+                            style: TextStyle(fontWeight: FontWeight.w500),
+                          ),
                           Spacer(),
                           IconButton(
                             icon: Icon(
-                              isFavorite ? Icons.favorite : Icons.favorite_border,
+                              isFavorite
+                                  ? Icons.favorite
+                                  : Icons.favorite_border,
                               color: isFavorite ? Colors.red : null,
                             ),
                             onPressed: () {},
                           )
-
                         ],
                       ),
                     )
@@ -278,7 +293,6 @@ class _HotelState extends State<HotelCard> {
   }
 }
 
-
 HotelCard buildHotel(
   Hotel hotel,
   Color defaultColor,
@@ -289,5 +303,4 @@ HotelCard buildHotel(
     hotel: hotel,
     defaultColor: defaultColor,
   );
-
 }

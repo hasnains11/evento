@@ -1,4 +1,5 @@
 import 'package:evento/pages/userInfo.dart';
+import 'package:evento/pages/welcome_screen.dart';
 import 'package:evento/services/AuthService.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -10,7 +11,7 @@ import '../pages/home_page.dart';
 
 class SideDrawer extends StatefulWidget {
   int index;
-   SideDrawer({Key? key,required this.index}) : super(key: key);
+  SideDrawer({Key? key, required this.index}) : super(key: key);
 
   @override
   State<SideDrawer> createState() => _SideDrawerState();
@@ -19,7 +20,6 @@ class SideDrawer extends StatefulWidget {
 class _SideDrawerState extends State<SideDrawer> {
   @override
   Widget build(BuildContext context) {
-
     return SizedBox(
       width: Get.width * 0.7,
       child: Drawer(
@@ -42,13 +42,15 @@ class _SideDrawerState extends State<SideDrawer> {
               ),
               SizedBox(height: Get.height * 0.03),
               Material(
-                color: widget.index==0?Colors.blueGrey[400]:Colors.blueGrey[800],
+                color: widget.index == 0
+                    ? Colors.blueGrey[400]
+                    : Colors.blueGrey[800],
                 child: InkWell(
                   onTap: () {
-                      // Navigate to the favorites screen
+                    // Navigate to the favorites screen
                     Get.off(() => HomePage());
-                    },
-                    splashColor: Colors.white,
+                  },
+                  splashColor: Colors.white,
                   child: ListTile(
                     horizontalTitleGap: 0,
                     leading: Icon(
@@ -66,13 +68,15 @@ class _SideDrawerState extends State<SideDrawer> {
                 ),
               ),
               Material(
-                color:  widget.index==1?Colors.blueGrey[400]:Colors.blueGrey[800],
+                color: widget.index == 1
+                    ? Colors.blueGrey[400]
+                    : Colors.blueGrey[800],
                 child: InkWell(
                   onTap: () {
-                      // Navigate to the favorites screen
-                    Get.off(()=>FavoritesPage());
-                    },
-                    splashColor: Colors.white,
+                    // Navigate to the favorites screen
+                    Get.off(() => FavoritesPage());
+                  },
+                  splashColor: Colors.white,
                   child: ListTile(
                     horizontalTitleGap: 0,
                     leading: Icon(
@@ -90,13 +94,15 @@ class _SideDrawerState extends State<SideDrawer> {
                 ),
               ),
               Material(
-                color: widget.index==2?Colors.blueGrey[400]:Colors.blueGrey[800],
+                color: widget.index == 2
+                    ? Colors.blueGrey[400]
+                    : Colors.blueGrey[800],
                 child: InkWell(
                   onTap: () {
-                      // Navigate to the favorites screen
-                    Get.off(()=> BookingsList());
-                    },
-                    splashColor: Colors.white,
+                    // Navigate to the favorites screen
+                    Get.off(() => BookingsList());
+                  },
+                  splashColor: Colors.white,
                   child: ListTile(
                     horizontalTitleGap: 0,
                     leading: Icon(
@@ -114,12 +120,14 @@ class _SideDrawerState extends State<SideDrawer> {
                 ),
               ),
               Material(
-                color: widget.index==3?Colors.blueGrey[400]:Colors.blueGrey[800],
+                color: widget.index == 3
+                    ? Colors.blueGrey[400]
+                    : Colors.blueGrey[800],
                 child: InkWell(
                   onTap: () {
-                    Get.off(()=> UserInformationScreen());
-                      },
-                    splashColor: Colors.white,
+                    Get.off(() => UserInformationScreen());
+                  },
+                  splashColor: Colors.white,
                   child: ListTile(
                     horizontalTitleGap: 0,
                     leading: Icon(
@@ -136,21 +144,43 @@ class _SideDrawerState extends State<SideDrawer> {
                   ),
                 ),
               ),
-
-
+              Material(
+                color: widget.index == 4
+                    ? Colors.blueGrey[400]
+                    : Colors.blueGrey[800],
+                child: InkWell(
+                  onTap: () {
+                    Get.offAll(() => WelcomeScreen());
+                  },
+                  splashColor: Colors.white,
+                  child: ListTile(
+                    horizontalTitleGap: 0,
+                    leading: Icon(
+                      Icons.add,
+                      color: Colors.green[300],
+                    ),
+                    title: Text(
+                      "Create New Booking",
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: Get.height * 0.022,
+                      ),
+                    ),
+                  ),
+                ),
+              ),
 
               const Spacer(),
 
               // SizedBox(height: Get.height * 0.02),
               Material(
                 color: Colors.blueGrey[800],
-
                 child: InkWell(
-                  onTap: () async{
+                  onTap: () async {
                     // Perform logout
                     await AuthService().SignOutUser();
                     await Future.delayed(Duration(seconds: 1));
-                  Get.offAllNamed('/');
+                    Get.offAllNamed('/');
                   },
                   splashColor: Colors.white,
                   child: Padding(
@@ -158,12 +188,12 @@ class _SideDrawerState extends State<SideDrawer> {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
-                        SizedBox(width: Get.height * 0.02 ),
+                        SizedBox(width: Get.height * 0.02),
                         Icon(
                           Icons.logout,
                           color: Colors.white,
                         ),
-                        SizedBox(width: Get.height * 0.02 ),
+                        SizedBox(width: Get.height * 0.02),
                         Text(
                           "Logout",
                           style: TextStyle(
