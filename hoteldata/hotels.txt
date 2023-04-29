@@ -1,0 +1,2394 @@
+// var hotelList=[
+//   {
+//     "name": "PC Hotel Rawalpindi",
+//     "description": "Luxury hotel located in Rawalpindi Cantonment",
+//     "location": "Rawalpindi",
+//     "capacity": 500,
+//     "img": "https://res.cloudinary.com/dnn5oehbn/image/upload/v1679018709/evento/pearl-continental-rawalpindi.jpg",
+//     "services": [
+//       "Business meetings",
+//       "Weddings",
+//       "Concerts"
+//     ],
+//     "menus": {
+//       "menu1": {
+//         "name": "Buffet",
+//         "items": [
+//           "Appetizers",
+//           "Soup",
+//           "Main course",
+//           "Dessert"
+//         ],
+//         "price": 2000
+//       },
+//       "menu2": {
+//         "name": "A la carte",
+//         "items": [
+//           "Steak",
+//           "Pasta",
+//           "Fish",
+//           "Burger"
+//         ],
+//         "price": 3000
+//       }
+//     },
+//     "decorations": [
+//       {
+//         "name": "Floral decoration",
+//         "charges": 5000
+//       },
+//       {
+//         "name": "Balloon decoration",
+//         "charges": 2500
+//       },
+//       {
+//         "name": "No decoration",
+//         "charges": 0
+//       }
+//     ],
+//     "shifts": {
+//       "morning": true,
+//       "evening": true
+//     },
+//     "bookingDates": [
+//       "2023-04-01",
+//       "2023-05-15",
+//       "2023-06-07"
+//     ],
+//     "price": 4500,
+//     "rating": 4.5,
+//     "uid": "PC_RWP"
+//   },
+
+//   {
+//     "id": "2",
+//     "name": "Flashman's Hotel",
+//     "location": "Rawalpindi",
+//     "capacity": 200,
+//     "price": 1900,
+//     "description": "Flashman's Hotel is a luxurious hotel located in the heart of Rawalpindi. The hotel offers a variety of services and facilities to cater to the needs of business and leisure travelers.",
+//     "img": "https://res.cloudinary.com/dnn5oehbn/image/upload/v1679018709/evento/flashmans_njeys5.jpg",
+//     "bookingDates": ["2023-03-11", "2023-03-14", "2023-03-16"],
+//     "rating": 4.5,
+//     "services": ["Wedding", "Concert", "Corporate Event"],
+//     "menus": {
+//       "menu1": {
+//         "uid": "menu1",
+//         "name": "Traditional Buffet",
+//         "price": 1800,
+//         "items": ["Chicken Biryani", "Mutton Karahi", "Mix Vegetable", "Green Salad", "Fruit Chat", "Soft Drinks"]
+//       },
+//       "menu2": {
+//         "uid": "menu2",
+//         "name": "Continental Buffet",
+//         "price": 2100,
+//         "items": ["Beef Lasagna", "Grilled Chicken", "Garlic Bread", "Caesar Salad", "Chocolate Brownie", "Fruit Punch"]
+//       },
+//       "menu3": {
+//         "uid": "menu3",
+//         "name": "Desi Buffet",
+//         "price": 1600,
+//         "items": ["Chapli Kebab", "Chicken Karahi", "Daal Makhani", "Mixed Pickle", "Raita", "Naan"]
+//       }
+//     },
+//     "decorations": [
+//       {"name": "Flower Decoration", "charges": 2500},
+//       {"name": "Balloon Decoration", "charges": 1500},
+//       {"name": "None", "charges": 0}
+//     ],
+//     "shifts": {"morning": false, "evening": true},
+//     "uid": "2"
+//   },
+//   {
+//     "id": "6",
+//     "name": "Bahria Grand Hotel & Resort",
+//     "location": "Bahria Town",
+//     "description": "Bahria Grand Hotel & Resort offers luxurious and comfortable accommodation in the heart of Bahria Town. With state-of-the-art facilities and excellent hospitality, it is the perfect place to relax and unwind after a long day of exploring the city.",
+//     "img": "https://res.cloudinary.com/dnn5oehbn/image/upload/v1679018709/evento/bahriagrand_vq3p5z.jpg",
+//     "price": 2786,
+//     "rating": 4.5,
+//     "capacity": 150,
+//     "bookingDates": [
+//       "2023-03-17",
+//       "2023-03-09",
+//       "",
+//       "2023-03-03"
+//     ],
+//     "menus": {
+//       "menu1": {
+//         "uid": "menu1",
+//         "name": "Lunch Buffet",
+//         "price": 1600,
+//         "items": [
+//           "Chicken Karahi",
+//           "Biryani",
+//           "Beef Qorma",
+//           "Assorted Naans",
+//           "Raita",
+//           "Salad Bar",
+//           "Variety of Sauces",
+//           "Gulab Jamun",
+//           "Green Tea"
+//         ]
+//       },
+//       "menu2": {
+//         "uid": "menu2",
+//         "name": "Dinner Buffet",
+//         "price": 2000,
+//         "items": [
+//           "Karahi Chicken",
+//           "Chicken Tikka Boti",
+//           "Seekh Kebab",
+//           "Mutton Qorma",
+//           "Fish Fry",
+//           "Assorted Naans",
+//           "Raita",
+//           "Salad Bar",
+//           "Variety of Sauces",
+//           "Gajar ka Halwa",
+//           "Green Tea"
+//         ]
+//       }
+//     },
+//     "decorations": [
+//       {
+//         "name": "Flower Decoration",
+//         "charges": 2000
+//       },
+//       {
+//         "name": "Balloon Decoration",
+//         "charges": 1500
+//       },
+//       {
+//         "name": "None",
+//         "charges": 0
+//       }
+//     ],
+//     "services": [
+//       "Birthday",
+//       "Wedding",
+//       "Concert"
+//     ],
+//     "shifts": {
+//       "morning": true,
+//       "evening": true
+//     },
+//     "uid": "6"
+//   },
+//   {
+//     "id": "7",
+//     "uid": "Serena-Islamabad",
+//     "name": "Serena Islamabad",
+//     "location": "Islamabad",
+//     "description": "Serena Islamabad is a 5-star luxury hotel located in the heart of Islamabad. The hotel offers elegant and spacious rooms and suites, along with top-notch amenities and services to make your stay comfortable and memorable. With a variety of venues for weddings, conferences, and other events, Serena Islamabad is the perfect choice for those looking for a luxurious and sophisticated experience.",
+//     "img": "https://res.cloudinary.com/dnn5oehbn/image/upload/v1679018837/evento/serena_islamabad_bjnjna.jpg",
+//     "capacity": 500,
+//     "services": [
+//         "Wedding",
+//         "Conference",
+//         "Birthday"
+//     ],
+//     "rating": 4.9,
+//     "price": 350,
+//     "bookingDates": [
+//         "2023-03-19",
+//         "2023-03-22",
+//         "",
+//         "2023-03-14"
+//     ],
+//     "menus": {
+//         "menu1": {
+//             "uid": "menu1",
+//             "name": "Continental Breakfast",
+//             "items": [
+//                 "Freshly baked croissants and pastries",
+//                 "Fresh fruits",
+//                 "Assorted cheeses and cold cuts",
+//                 "Scrambled eggs",
+//                 "Baked beans",
+//                 "Turkey bacon",
+//                 "Assorted juices",
+//                 "Coffee and tea"
+//             ],
+//             "price": 20
+//         },
+//         "menu2": {
+//             "uid": "menu2",
+//             "name": "International Buffet",
+//             "items": [
+//                 "Welcome drinks",
+//                 "Assorted salads",
+//                 "Grilled chicken and fish",
+//                 "Beef and vegetable lasagna",
+//                 "Biryani",
+//                 "Assorted naan",
+//                 "Assorted desserts",
+//                 "Coffee and tea"
+//             ],
+//             "price": 40
+//         }
+//     },
+//     "shifts": {
+//         "morning": true,
+//         "evening": true
+//     },
+//     "decorations": [
+//         {
+//             "name": "Flower Decoration",
+//             "charges": 5000
+//         },
+//         {
+//             "name": "Balloon Decoration",
+//             "charges": 3000
+//         },
+//         {
+//             "name": "None",
+//             "charges": 0
+//         }
+//     ]
+// }
+
+// {
+//     "id": "5",
+//     "uid": "the-centaurus-hotel",
+//     "name": "The Centaurus Hotel",
+//     "location": "Islamabad",
+//     "description": "The Centaurus Hotel is a luxury hotel located in the heart of Islamabad's business and commercial district. The hotel offers world-class amenities, impeccable service and stunning views of the Margalla Hills. Whether you're visiting for business or pleasure, The Centaurus Hotel promises a memorable experience.",
+//     "img": "https://res.cloudinary.com/dnn5oehbn/image/upload/v1679018711/evento/the-centaurus-hotel_cnvjiv.jpg",
+//     "capacity": 500,
+//     "price": 2000,
+//     "rating": 4,
+//     "services": [
+//         "Wedding",
+//         "Seminar",
+//         "Concert",
+//         "Birthday"
+//     ],
+//     "shifts": {
+//         "morning": true,
+//         "evening": true
+//     },
+//     "bookingDates": [
+//         "2023-04-10",
+//         "2023-05-23",
+//         "2023-06-12"
+//     ],
+//     "decorations": [
+//         {
+//             "name": "Flowers Decoration",
+//             "charges": 5000
+//         },
+//         {
+//             "name": "Balloons Decoration",
+//             "charges": 3000
+//         },
+//         {
+//             "name": "None",
+//             "charges": 0
+//         }
+//     ],
+//     "menus": {
+//         "menu1": {
+//             "name": "Continental Menu",
+//             "uid": "menu1",
+//             "items": [
+//                 "Welcome Drinks",
+//                 "Chicken Parmesan",
+//                 "Pesto Pasta",
+//                 "Garlic Bread",
+//                 "Tiramisu"
+//             ],
+//             "price": 1500
+//         },
+//         "menu2": {
+//             "name": "Chinese Menu",
+//             "uid": "menu2",
+//             "items": [
+//                 "Welcome Drinks",
+//                 "Hot and Sour Soup",
+//                 "Chilli Chicken",
+//                 "Beef with Broccoli",
+//                 "Vegetable Fried Rice",
+//                 "Fruit Salad"
+//             ],
+//             "price": 1800
+//         }
+//     }
+// },
+// {
+//   "id": "6",
+//   "name": "Hotel City Paradise",
+//   "location": "Rawalpindi",
+//   "description": "Hotel City Paradise is a luxurious hotel located in the heart of Bahria Town, offering a perfect accommodation for both leisure and business travelers. The hotel boasts state-of-the-art facilities and excellent hospitality, making it an ideal choice for hosting birthday events.",
+//   "img": "https://res.cloudinary.com/dnn5oehbn/image/upload/v1679018709/evento/cityparadise_e4uvok.jpg",
+//   "price": 1200,
+//   "capacity": 50,
+//   "rating": 4,
+//   "bookingDates": [
+//     "2023-04-12",
+//     "2023-04-14",
+//     "2023-04-15",
+//     ""
+//   ],
+//   "shifts": {
+//     "morning": false,
+//     "evening": true
+//   },
+//   "services": [
+//     "Birthday"
+//   ],
+//   "menus": {
+//     "menu1": {
+//       "uid": "menu1",
+//       "name": "Basic Menu",
+//       "items": [
+//         "Chicken Biryani",
+//         "Chicken Karahi",
+//         "Raita",
+//         "Naan",
+//         "Coleslaw Salad",
+//         "Soft Drinks"
+//       ],
+//       "price": 1000
+//     },
+//     "menu2": {
+//       "uid": "menu2",
+//       "name": "Premium Menu",
+//       "items": [
+//         "Chicken Alfredo Pasta",
+//         "Grilled Chicken with Mushroom Sauce",
+//         "Potato Wedges",
+//         "Garlic Bread",
+//         "Fresh Garden Salad",
+//         "Fruit Punch"
+//       ],
+//       "price": 1500
+//     }
+//   },
+//   "decorations": [
+//     {
+//       "name": "Balloon Decoration",
+//       "charges": 1000
+//     },
+//     {
+//       "name": "Flower Decoration",
+//       "charges": 2000
+//     },
+//     {
+//       "name": "None",
+//       "charges": 0
+//     }
+//   ]
+// },
+// {
+//   "id": "8",
+//   "uid": "concert-isb-venue-8",
+//   "name": "Jinnah Convention Centre",
+//   "location": "Islamabad",
+//   "description": "Jinnah Convention Centre is a state-of-the-art venue in Islamabad, equipped with modern facilities and a capacity to host large-scale concerts and events. The center offers spacious halls and rooms with the latest audiovisual equipment, high-speed internet, and excellent catering services to make any concert or event a success.",
+//   "img": "https://res.cloudinary.com/dnn5oehbn/image/upload/v1679018709/evento/jinnah-convention-centre-islamabad_uuz2jt.jpg",
+//   "price": 15000,
+//   "capacity": 5000,
+//   "bookingDates": ["2023-04-12", "2023-04-19", "2023-04-26"],
+//   "rating": 4,
+//   "shifts": {
+//     "morning": false,
+//     "evening": true
+//   },
+//   "services": [
+//     "Concert"
+//   ],
+//   "decorations": [
+//     {
+//       "name": "Basic Stage Decor",
+//       "charges": 10000
+//     },
+//     {
+//       "name": "Premium Stage Decor",
+//       "charges": 20000
+//     },
+//     {
+//       "name": "No Decoration",
+//       "charges": 0
+//     }
+//   ],
+//   "menus": {
+//     "menu1": {
+//       "uid": "menu1",
+//       "name": "Silver Menu",
+//       "items": [
+//         "Welcome Drink",
+//         "Fried Rice",
+//         "Chicken Shashlik",
+//         "Green Salad",
+//         "Fresh Fruit Platter",
+//         "Mineral Water",
+//         "Tea/Coffee"
+//       ],
+//       "price": 1500
+//     },
+//     "menu2": {
+//       "uid": "menu2",
+//       "name": "Gold Menu",
+//       "items": [
+//         "Welcome Drink",
+//         "Mutton Karahi",
+//         "Chicken Jalfrezi",
+//         "Mix Vegetable",
+//         "Raita",
+//         "Green Salad",
+//         "Naan/Paratha",
+//         "Assorted Desserts",
+//         "Mineral Water",
+//         "Tea/Coffee"
+//       ],
+//       "price": 2500
+//     },
+//     "menu3": {
+//       "uid": "menu3",
+//       "name": "Platinum Menu",
+//       "items": [
+//         "Welcome Drink",
+//         "Mutton Biryani",
+//         "Chicken Tikka",
+//         "Seekh Kebab",
+//         "Mix Vegetable",
+//         "Raita",
+//         "Green Salad",
+//         "Naan/Paratha",
+//         "Assorted Desserts",
+//         "Mineral Water",
+//         "Tea/Coffee"
+//       ],
+//       "price": 3500
+//     }
+//   }
+// },
+// {
+//   "id": "8",
+//   "name": "Islamabad Marriott Hotel",
+//   "location": "Islamabad",
+//   "description": "The Islamabad Marriott Hotel is a 5-star hotel located in the heart of Islamabad. The hotel offers luxurious accommodations and state-of-the-art facilities for guests to enjoy. Whether you're in town for business or pleasure, the Islamabad Marriott Hotel has everything you need to make your stay comfortable and enjoyable.",
+//   "img": "https://res.cloudinary.com/dnn5oehbn/image/upload/v1679022682/evento/marriott_gdmmha.jpg",
+//   "capacity": 200,
+//   "price": 3000,
+//   "rating": 4,
+//   "bookingDates": [
+//       "2023-04-05",
+//       "2023-04-07",
+//       "2023-04-12",
+//       "2023-04-14"
+//   ],
+//   "shifts": {
+//       "morning": false,
+//       "evening": true
+//   },
+//   "decorations": [
+//       {
+//           "name": "Balloons Decoration",
+//           "charges": 1500
+//       },
+//       {
+//           "name": "Flowers Decoration",
+//           "charges": 2000
+//       },
+//       {
+//           "name": "None",
+//           "charges": 0
+//       }
+//   ],
+//   "services": [
+//       "Concert"
+//   ],
+//   "menus": {
+//       "menu1": {
+//           "name": "Snack Menu",
+//           "uid": "menu1",
+//           "items": [
+//               "Assorted Sandwiches",
+//               "Chicken Wings",
+//               "Spring Rolls",
+//               "Assorted Cold Drinks"
+//           ],
+//           "price": 800
+//       },
+//       "menu2": {
+//           "name": "Dinner Menu",
+//           "uid": "menu2",
+//           "items": [
+//               "Mixed Vegetable Salad",
+//               "Assorted Bread Basket",
+//               "Grilled Chicken",
+//               "Beef Steak",
+//               "Vegetable Fried Rice",
+//               "Garlic Mashed Potatoes",
+//               "Variety of Sauces",
+//               "Assorted Soft Drinks",
+//               "Assorted Desserts"
+//           ],
+//           "price": 1500
+//       }
+//   },
+//   "uid": "8"
+// },
+// {
+//   "id": "10",
+//   "uid": "pibex",
+//   "name": "Pearl Continental Hotel Islamabad",
+//   "location": "Islamabad",
+//   "description": "Pearl Continental Hotel Islamabad, located in the heart of Islamabad, provides excellent facilities and top-notch services for conferences, seminars, and other corporate events. The hotel boasts of state-of-the-art conference rooms, modern equipment, and a dedicated team of professionals to ensure a successful event.",
+//   "img": "https://res.cloudinary.com/dnn5oehbn/image/upload/v1679022003/evento/pearlcontinental_ubn4jo.jpg",
+//   "capacity": 350,
+//   "price": 2500,
+//   "rating": 4,
+//   "bookingDates": [
+//       "2023-04-08",
+//       "2023-05-20",
+//       "",
+//       "2023-06-15"
+//   ],
+//   "shifts": {
+//       "morning": true,
+//       "evening": true
+//   },
+//   "services": [
+//       "Seminars"
+//   ],
+//   "menus": {
+//       "menu1": {
+//           "uid": "menu1",
+//           "name": "Continental Breakfast",
+//           "items": [
+//               "Croissants",
+//               "Assorted Muffins",
+//               "Yoghurt",
+//               "Fruit Salad",
+//               "Fruit Juices",
+//               "Coffee",
+//               "Tea"
+//           ],
+//           "price": 500
+//       },
+//       "menu2": {
+//           "uid": "menu2",
+//           "name": "Buffet Lunch",
+//           "items": [
+//               "Assorted Salads",
+//               "Biryani",
+//               "Chicken Karahi",
+//               "Fish Fry",
+//               "Mix Vegetable",
+//               "Chapli Kebab",
+//               "Naan",
+//               "Raita",
+//               "Fruit Salad",
+//               "Soft Drinks"
+//           ],
+//           "price": 1500
+//       }
+//   },
+//   "decorations": [
+//       {
+//           "name": "Flowers Decoration",
+//           "charges": 3000
+//       },
+//       {
+//           "name": "Balloon Decoration",
+//           "charges": 2500
+//       },
+//       {
+//           "name": "No Decoration",
+//           "charges": 0
+//       }
+//   ]
+// },
+// {
+//   "id": "9",
+//   "uid": "serai",
+//   "name": "Serai Boutique Hotel",
+//   "location": "Islamabad",
+//   "description": "Serai Boutique Hotel is a luxury hotel in the heart of Islamabad, offering world-class facilities and services for your seminars, meetings, and events. The hotel features state-of-the-art conference rooms, high-speed internet, and modern audiovisual equipment to ensure that your event is a success.",
+//   "img": "https://res.cloudinary.com/dnn5oehbn/image/upload/v1679018709/evento/serai_vlwtnc.jpg",
+//   "capacity": 200,
+//   "price": 2500,
+//   "rating": 4,
+//   "bookingDates": [
+//       "2023-03-17",
+//       "2023-03-21",
+//       "2023-03-25",
+//       "2023-04-02"
+//   ],
+//   "services": [
+//       "Seminar"
+//   ],
+//   "menus": {
+//       "menu1": {
+//           "uid": "menu1",
+//           "name": "Basic Package",
+//           "price": 1200,
+//           "items": [
+//               "Tea & Coffee",
+//               "Assorted Sandwiches",
+//               "Fresh Juice"
+//           ]
+//       },
+//       "menu2": {
+//           "uid": "menu2",
+//           "name": "Deluxe Package",
+//           "price": 1800,
+//           "items": [
+//               "Tea & Coffee",
+//               "Assorted Sandwiches",
+//               "Mini Samosas",
+//               "Fresh Juice",
+//               "Muffins"
+//           ]
+//       }
+//   },
+//   "shifts": {
+//       "morning": true,
+//       "evening": false
+//   },
+//   "decorations": [
+//       {
+//           "name": "None",
+//           "charges": 0
+//       },
+//       {
+//           "name": "Flowers Decoration",
+//           "charges": 1500
+//       },
+//       {
+//           "name": "Balloon Decoration",
+//           "charges": 1000
+//       }
+//   ]
+// },
+// {
+//   "name": "Grand Wedding Hall",
+//   "location": "Islamabad",
+//   "capacity": 500,
+//   "price": 500000,
+//   "services": [
+//     "Wedding",
+//     "Birthday"
+//   ],
+//   "bookingDates": [
+//     "2023-05-15",
+//     "2023-05-22"
+//   ],
+//   "decorations": [
+//     {
+//       "name": "Flower Decoration",
+//       "charges": 25000
+//     },
+//     {
+//       "name": "Light Decoration",
+//       "charges": 15000
+//     },
+//     {
+//       "name": "None",
+//       "charges": 0
+//     }
+//   ],
+//   "menus": {
+//     "menu1": {
+//       "name": "Buffet",
+//       "items": [
+//         "Biryani",
+//         "Chicken Karahi",
+//         "Tikka Boti",
+//         "Salad Bar",
+//         "Fruit Trifle",
+//         "Soft Drinks"
+//       ],
+//       "price": 1800
+//     },
+//     "menu2": {
+//       "name": "Sit-Down",
+//       "items": [
+//         "Mutton Korma",
+//         "Chicken Handi",
+//         "Daal Makhani",
+//         "Kashmiri Pulao",
+//         "Raita",
+//         "Kulfi",
+//         "Tea"
+//       ],
+//       "price": 2500
+//     }
+//   },
+//   "rating": 4.5
+// },
+// {
+//   "id": "10",
+//   "name": "Hotel Margalla",
+//   "location": "Islamabad",
+//   "capacity": 500,
+//   "description": "Hotel Margalla is a luxurious 5-star hotel located in the heart of Islamabad. The hotel offers a wide range of services and amenities, including spacious banquet halls, outdoor gardens, and catering services, making it the perfect venue for weddings and other special events. The hotel also offers comfortable accommodation, excellent dining options, and top-notch amenities for a truly memorable stay.",
+//   "img": "https://res.cloudinary.com/dnn5oehbn/image/upload/v1679019078/evento/margalla_lwsak4.jpg",
+//   "rating": 4,
+//   "price": 2500,
+//   "bookingDates": [
+//       "2023-04-05",
+//       "2023-04-06",
+//       "",
+//       "2023-04-09"
+//   ],
+//   "shifts": {
+//       "morning": true,
+//       "evening": true
+//   },
+//   "services": [
+//       "Wedding"
+//   ],
+//   "menus": {
+//       "menu1": {
+//           "uid": "menu1",
+//           "name": "Deluxe Menu",
+//           "items": [
+//               "Welcome Drink",
+//               "Variety of Salads",
+//               "Variety of Raita",
+//               "Chicken Karahi",
+//               "Mutton Qorma",
+//               "Fish Curry",
+//               "Palak Paneer",
+//               "Mix Vegetable",
+//               "Steamed Rice",
+//               "Naan/Paratha",
+//               "Gulab Jamun",
+//               "Tea/Coffee"
+//           ],
+//           "price": 1800
+//       },
+//       "menu2": {
+//           "uid": "menu2",
+//           "name": "Platinum Menu",
+//           "items": [
+//               "Welcome Drink",
+//               "Variety of Salads",
+//               "Variety of Raita",
+//               "Chicken Karahi",
+//               "Mutton Qorma",
+//               "Fish Curry",
+//               "Palak Paneer",
+//               "Mix Vegetable",
+//               "Steamed Rice",
+//               "Naan/Paratha",
+//               "Gulab Jamun",
+//               "Kulfi Faluda",
+//               "Tea/Coffee"
+//           ],
+//           "price": 2500
+//       }
+//   },
+//   "decorations": [
+//       {
+//           "name": "Flower Decoration",
+//           "charges": 5000
+//       },
+//       {
+//           "name": "Balloon Decoration",
+//           "charges": 3000
+//       },
+//       {
+//           "name": "Light Decoration",
+//           "charges": 6000
+//       }
+//   ]
+// },
+// {
+//   "id": "15",
+//   "name": "Khyber Lodge",
+//   "location": "Islamabad",
+//   "description": "Nestled in the heart of Islamabad, Khyber Lodge is a luxurious retreat that offers unparalleled comfort and service to its guests. Whether you are looking for a serene escape or a lively experience, Khyber Lodge is the perfect destination.",
+//   "img": "https://res.cloudinary.com/dnn5oehbn/image/upload/v1679018709/evento/khyberlodge_vomd1m.jpg",
+//   "price": 2500,
+//   "capacity": 150,
+//   "rating": 4,
+//   "bookingDates": [
+//       "2023-04-10",
+//       "2023-05-02",
+//       "2023-05-11"
+//   ],
+//   "shifts": {
+//       "morning": true,
+//       "evening": false
+//   },
+//   "services": [
+//       "Wedding",
+//       "Concert"
+//   ],
+//   "decorations": [
+//       {
+//           "name": "Flowers Decoration",
+//           "charges": 3000
+//       },
+//       {
+//           "name": "Balloon Decoration",
+//           "charges": 2000
+//       },
+//       {
+//           "name": "None",
+//           "charges": 0
+//       }
+//   ],
+//   "menus": {
+//       "menu1": {
+//           "name": "Basic Menu",
+//           "uid": "menu1",
+//           "items": [
+//               "Chicken Biryani",
+//               "Chicken Qorma",
+//               "Salad Bar",
+//               "Assorted Naan",
+//               "Raita",
+//               "One Dessert",
+//               "Soft Drinks"
+//           ],
+//           "price": 1500
+//       },
+//       "menu2": {
+//           "name": "Premium Menu",
+//           "uid": "menu2",
+//           "items": [
+//               "Welcome Drinks",
+//               "Chicken Tikka",
+//               "Seekh Kebab",
+//               "Chicken Biryani",
+//               "Beef Qorma",
+//               "Palak Paneer",
+//               "Naan Bread",
+//               "Raita",
+//               "Salad Bar",
+//               "Assorted Desserts",
+//               "Tea/Coffee"
+//           ],
+//           "price": 3000
+//       }
+//   }
+// },
+// {
+//   "id": "7",
+//   "name": "The Monarch",
+//   "location": "Islamabad",
+//   "capacity": 500,
+//   "price": 2000,
+//   "img": "https://res.cloudinary.com/dnn5oehbn/image/upload/v1679018798/evento/monarch_a5l5y5.jpg",
+//   "description": "The Monarch is a state-of-the-art event space with a capacity of up to 500 guests. Located in the heart of Islamabad, it offers a luxurious and spacious environment for weddings, corporate events, and other special occasions. The venue is equipped with modern amenities including a sound system, lighting, and comfortable seating arrangements.",
+//   "services": [
+//       "Wedding"
+//   ],
+//   "bookingDates": [
+//       "2023-04-05",
+//       "2023-05-07",
+//       "",
+//       ""
+//   ],
+//   "shifts": {
+//       "morning": true,
+//       "evening": true
+//   },
+//   "rating": 4,
+//   "decorations": [
+//       {
+//           "name": "Flowers Decoration",
+//           "charges": 1500
+//       },
+//       {
+//           "name": "Balloons Decoration",
+//           "charges": 1000
+//       },
+//       {
+//           "name": "None",
+//           "charges": 0
+//       }
+//   ],
+//   "menus": {
+//       "menu1": {
+//           "uid": "menu1",
+//           "name": "Standard Menu",
+//           "items": [
+//               "Chicken Biryani",
+//               "Chicken Karahi",
+//               "Palak Paneer",
+//               "Chapati",
+//               "Naan",
+//               "Salad Bar",
+//               "Dessert",
+//               "Soft Drinks"
+//           ],
+//           "price": 800
+//       },
+//       "menu2": {
+//           "uid": "menu2",
+//           "name": "Deluxe Menu",
+//           "items": [
+//               "Chicken Biryani",
+//               "Mutton Karahi",
+//               "Chicken Malai Boti",
+//               "Tandoori Naan",
+//               "Garlic Naan",
+//               "Raita",
+//               "Dessert",
+//               "Soft Drinks",
+//               "Green Tea"
+//           ],
+//           "price": 1200
+//       }
+//   }
+// },
+// {
+//   "id": "8",
+//   "name": "The Royal Garden",
+//   "location": "Islamabad",
+//   "capacity": 300,
+//   "price": 2500,
+//   "img": "https://res.cloudinary.com/dnn5oehbn/image/upload/v1679018798/evento/royal_garden_pqtvnq.jpg",
+//   "description": "The Royal Garden is a perfect wedding venue located in Islamabad. It has a capacity of up to 300 guests and offers a lavish environment for weddings, engagement ceremonies and other special occasions. The venue is fully air-conditioned and equipped with all modern amenities including sound system, lighting and comfortable seating arrangements. The Royal Garden is also famous for its beautiful floral decoration and its mouthwatering food. ",
+//   "services": [
+//     "Wedding"
+//   ],
+//   "bookingDates": [
+//     "2023-06-01",
+//     "2023-06-15",
+//     "",
+//     ""
+//   ],
+//   "shifts": {
+//     "morning": true,
+//     "evening": true
+//   },
+//   "rating": 4,
+//   "decorations": [
+//     {
+//       "name": "Flowers Decoration",
+//       "charges": 2000
+//     },
+//     {
+//       "name": "Theme Decoration",
+//       "charges": 3500
+//     },
+//     {
+//       "name": "None",
+//       "charges": 0
+//     }
+//   ],
+//   "menus": {
+//     "menu1": {
+//       "uid": "menu1",
+//       "name": "Standard Menu",
+//       "items": [
+//         "Chicken Biryani",
+//         "Mutton Karahi",
+//         "Daal Chana",
+//         "Raita",
+//         "Salad",
+//         "Naan",
+//         "Dessert",
+//         "Soft Drinks"
+//       ],
+//       "price": 1000
+//     },
+//     "menu2": {
+//       "uid": "menu2",
+//       "name": "Deluxe Menu",
+//       "items": [
+//         "Chicken Biryani",
+//         "Mutton Karahi",
+//         "Fish Finger",
+//         "Daal Makhani",
+//         "Raita",
+//         "Salad",
+//         "Naan",
+//         "Dessert",
+//         "Soft Drinks",
+//         "Green Tea"
+//       ],
+//       "price": 1500
+//     }
+//   }
+// },
+// {
+//   "id": "8",
+//   "name": "The Crystal Ballroom",
+//   "location": "Islamabad",
+//   "capacity": 400,
+//   "price": 3000,
+//   "img": "https://res.cloudinary.com/dnn5oehbn/image/upload/v1679018798/evento/crystal_ballroom_pzjj2a.jpg",
+//   "description": "The Crystal Ballroom is a sophisticated and elegant venue, perfect for hosting weddings, receptions, and other special events. It can accommodate up to 400 guests and is equipped with state-of-the-art lighting and sound systems. The venue also has a large dance floor and comfortable seating arrangements for guests.",
+//   "services": [
+//     "Wedding",
+//     "Reception"
+//   ],
+//   "bookingDates": [
+//     "2023-06-15",
+//     "2023-06-18",
+//     "",
+//     ""
+//   ],
+//   "shifts": {
+//     "morning": false,
+//     "evening": true
+//   },
+//   "rating": 5,
+//   "decorations": [
+//     {
+//       "name": "Flower Decoration",
+//       "charges": 2000
+//     },
+//     {
+//       "name": "Theme Decoration",
+//       "charges": 3000
+//     },
+//     {
+//       "name": "None",
+//       "charges": 0
+//     }
+//   ],
+//   "menus": {
+//     "menu1": {
+//       "uid": "menu1",
+//       "name": "Silver Menu",
+//       "items": [
+//         "Chicken Biryani",
+//         "Chicken Karahi",
+//         "Mutton Korma",
+//         "Tandoori Naan",
+//         "Salad Bar",
+//         "Dessert",
+//         "Soft Drinks"
+//       ],
+//       "price": 1000
+//     },
+//     "menu2": {
+//       "uid": "menu2",
+//       "name": "Gold Menu",
+//       "items": [
+//         "Mutton Biryani",
+//         "Mutton Karahi",
+//         "Chicken Malai Boti",
+//         "Garlic Naan",
+//         "Raita",
+//         "Dessert",
+//         "Soft Drinks",
+//         "Green Tea"
+//       ],
+//       "price": 1500
+//     }
+//   }
+// },
+// {
+//     "id": "10",
+//     "name": "Royalton Banquet Hall",
+//     "location": "Rawalpindi",
+//     "capacity": 700,
+//     "price": 2500,
+//     "img": "https://res.cloudinary.com/dnn5oehbn/image/upload/v1679018801/evento/royalton_fvmrlv.jpg",
+//     "description": "Royalton Banquet Hall is an elegant and modern venue located in Rawalpindi. With a capacity of up to 700 guests, it offers a spacious and luxurious environment for weddings, corporate events, and other special occasions. The venue is equipped with state-of-the-art amenities, including a sound system, lighting, and comfortable seating arrangements.",
+//     "services": [
+//         "Wedding",
+//         "Corporate Events"
+//     ],
+//     "bookingDates": [
+//         "2023-04-12",
+//         "2023-05-15",
+//         "",
+//         ""
+//     ],
+//     "shifts": {
+//         "morning": true,
+//         "evening": true
+//     },
+//     "rating": 4.5,
+//     "decorations": [
+//         {
+//             "name": "Flowers Decoration",
+//             "charges": 2000
+//         },
+//         {
+//             "name": "Candles Decoration",
+//             "charges": 1500
+//         },
+//         {
+//             "name": "None",
+//             "charges": 0
+//         }
+//     ],
+//     "menus": {
+//         "menu1": {
+//             "uid": "menu1",
+//             "name": "Silver Menu",
+//             "items": [
+//                 "Chicken Biryani",
+//                 "Mutton Karahi",
+//                 "Mix Vegetables",
+//                 "Tandoori Naan",
+//                 "Raita",
+//                 "Dessert",
+//                 "Soft Drinks"
+//             ],
+//             "price": 1000
+//         },
+//         "menu2": {
+//             "uid": "menu2",
+//             "name": "Gold Menu",
+//             "items": [
+//                 "Beef Biryani",
+//                 "Chicken Korma",
+//                 "Mix Vegetables",
+//                 "Garlic Naan",
+//                 "Raita",
+//                 "Dessert",
+//                 "Soft Drinks",
+//                 "Green Tea"
+//             ],
+//             "price": 1500
+//         }
+//     }
+
+
+
+// },
+// {
+//   "id": "12",
+//   "name": "The Pearl Wedding Hall",
+//   "location": "Rawalpindi",
+//   "capacity": 700,
+//   "price": 2500,
+//   "img": "https://res.cloudinary.com/dnn5oehbn/image/upload/v1679018798/evento/pearl_hall_ue5o5y.jpg",
+//   "description": "The Pearl Wedding Hall is a stunning and spacious event space with a capacity of up to 700 guests. Located in the heart of Rawalpindi, it offers a luxurious environment for weddings and other special events. The venue features a modern sound system, lighting, and comfortable seating arrangements for your guests.",
+//   "services": [
+//       "Wedding"
+//   ],
+//   "bookingDates": [
+//       "",
+//       "",
+//       "2023-06-15",
+//       "2023-08-20"
+//   ],
+//   "shifts": {
+//       "morning": false,
+//       "evening": true
+//   },
+//   "rating": 4,
+//   "decorations": [
+//       {
+//           "name": "Flowers Decoration",
+//           "charges": 2000
+//       },
+//       {
+//           "name": "Light Decoration",
+//           "charges": 1500
+//       },
+//       {
+//           "name": "None",
+//           "charges": 0
+//       }
+//   ],
+//   "menus": {
+//       "menu1": {
+//           "uid": "menu1",
+//           "name": "Silver Menu",
+//           "items": [
+//               "Chicken Biryani",
+//               "Chicken Karahi",
+//               "Palak Paneer",
+//               "Chapati",
+//               "Naan",
+//               "Salad Bar",
+//               "Dessert",
+//               "Soft Drinks"
+//           ],
+//           "price": 1000
+//       },
+//       "menu2": {
+//           "uid": "menu2",
+//           "name": "Gold Menu",
+//           "items": [
+//               "Chicken Biryani",
+//               "Mutton Karahi",
+//               "Chicken Malai Boti",
+//               "Tandoori Naan",
+//               "Garlic Naan",
+//               "Raita",
+//               "Dessert",
+//               "Soft Drinks",
+//               "Green Tea"
+//           ],
+//           "price": 1500
+//       }
+//   }
+// },
+// {
+//   "id": "11",
+//   "name": "Rawalpindi Marquee",
+//   "location": "Rawalpindi",
+//   "capacity": 400,
+//   "price": 1500,
+//   "img": "https://res.cloudinary.com/dnn5oehbn/image/upload/v1679019191/evento/rawalpindi-marquee_jd9gsl.jpg",
+//   "description": "Rawalpindi Marquee is a beautiful wedding venue located in the heart of Rawalpindi. The marquee has a capacity of up to 400 guests and is equipped with modern facilities such as sound system, lighting, and air conditioning. The venue offers a spacious and elegant environment for weddings and other special occasions.",
+//   "services": [
+//       "Wedding"
+//   ],
+//   "bookingDates": [
+//       "2023-04-02",
+//       "2023-04-05",
+//       "2023-05-10",
+//       "2023-06-15"
+//   ],
+//   "shifts": {
+//       "morning": true,
+//       "evening": true
+//   },
+//   "rating": 3,
+//   "decorations": [
+//       {
+//           "name": "Flowers Decoration",
+//           "charges": 2000
+//       },
+//       {
+//           "name": "Lighting Decoration",
+//           "charges": 1000
+//       },
+//       {
+//           "name": "None",
+//           "charges": 0
+//       }
+//   ],
+//   "menus": {
+//       "menu1": {
+//           "uid": "menu1",
+//           "name": "Standard Menu",
+//           "items": [
+//               "Chicken Biryani",
+//               "Chicken Karahi",
+//               "Palak Paneer",
+//               "Chapati",
+//               "Naan",
+//               "Salad Bar",
+//               "Dessert",
+//               "Soft Drinks"
+//           ],
+//           "price": 700
+//       },
+//       "menu2": {
+//           "uid": "menu2",
+//           "name": "Deluxe Menu",
+//           "items": [
+//               "Chicken Biryani",
+//               "Mutton Karahi",
+//               "Chicken Malai Boti",
+//               "Tandoori Naan",
+//               "Garlic Naan",
+//               "Raita",
+//               "Dessert",
+//               "Soft Drinks",
+//               "Green Tea"
+//           ],
+//           "price": 1000
+//       }
+//   }
+// },
+// {
+//   "id": "13",
+//   "name": "The Cake House",
+//   "location": "Rawalpindi",
+//   "capacity": 100,
+//   "price": 500,
+//   "img": "https://res.cloudinary.com/dnn5oehbn/image/upload/v1679023190/evento/cake_house_l5mnhv.jpg",
+//   "description": "The Cake House is a cozy venue perfect for intimate birthday celebrations. It has a capacity of up to 100 guests and is located in the heart of Rawalpindi. The venue offers a warm and welcoming atmosphere with comfortable seating arrangements and a well-lit space. It's also equipped with a sound system and lighting for a fun-filled birthday party.",
+//   "services": [
+//       "Birthday"
+//   ],
+//   "bookingDates": [
+//       "2023-04-08",
+//       "2023-05-10",
+//       "2023-06-15",
+//       ""
+//   ],
+//   "shifts": {
+//       "morning": false,
+//       "evening": true
+//   },
+//   "rating": 4,
+//   "decorations": [
+//       {
+//           "name": "Balloons Decoration",
+//           "charges": 500
+//       },
+//       {
+//           "name": "Streamers Decoration",
+//           "charges": 300
+//       },
+//       {
+//           "name": "None",
+//           "charges": 0
+//       }
+//   ],
+//   "menus": {
+//       "menu1": {
+//           "uid": "menu1",
+//           "name": "Kids Menu",
+//           "items": [
+//               "Pizza",
+//               "Burger",
+//               "Fries",
+//               "Chicken Nuggets",
+//               "Fruit Salad",
+//               "Juice"
+//           ],
+//           "price": 300
+//       },
+//       "menu2": {
+//           "uid": "menu2",
+//           "name": "Adults Menu",
+//           "items": [
+//               "Chicken Tikka",
+//               "Chicken Karahi",
+//               "Beef Biryani",
+//               "Raita",
+//               "Naan",
+//               "Fruit Chat",
+//               "Soft Drinks"
+//           ],
+//           "price": 600
+//       }
+//   }
+// },
+// {
+//   "id": "9",
+//   "name": "Party Time",
+//   "location": "Rawalpindi",
+//   "capacity": 100,
+//   "price": 1000,
+//   "img": "https://res.cloudinary.com/dnn5oehbn/image/upload/v1679020925/evento/birthday_party_gfgrmd.jpg",
+//   "description": "Party Time is an ideal venue for celebrating your birthday with family and friends. It has a capacity of up to 100 guests and is located in the heart of Rawalpindi. The venue is equipped with a sound system, lighting, and comfortable seating arrangements. It offers a great atmosphere for a memorable birthday celebration.",
+//   "services": [
+//       "Birthday"
+//   ],
+//   "bookingDates": [
+//       "2023-05-15",
+//       "2023-06-22",
+//       "",
+//       ""
+//   ],
+//   "shifts": {
+//       "morning": false,
+//       "evening": true
+//   },
+//   "rating": 4.5,
+//   "decorations": [
+//       {
+//           "name": "Balloon Decoration",
+//           "charges": 500
+//       },
+//       {
+//           "name": "Theme Decoration",
+//           "charges": 1000
+//       },
+//       {
+//           "name": "None",
+//           "charges": 0
+//       }
+//   ],
+//   "menus": {
+//       "menu1": {
+//           "uid": "menu1",
+//           "name": "Snack Menu",
+//           "items": [
+//               "Samosas",
+//               "Sandwiches",
+//               "Chicken Nuggets",
+//               "French Fries",
+//               "Popcorn",
+//               "Soft Drinks"
+//           ],
+//           "price": 500
+//       },
+//       "menu2": {
+//           "uid": "menu2",
+//           "name": "Buffet Menu",
+//           "items": [
+//               "Chicken Biryani",
+//               "Chicken Karahi",
+//               "Daal Chawal",
+//               "Naan",
+//               "Salad Bar",
+//               "Dessert",
+//               "Soft Drinks"
+//           ],
+//           "price": 800
+//       }
+//   }
+// },
+// {
+//   "id": "12",
+//   "name": "Sky Lounge",
+//   "location": "Rawalpindi",
+//   "capacity": 150,
+//   "price": 4000,
+//   "img": "https://res.cloudinary.com/dnn5oehbn/image/upload/v1679018798/evento/sky_lounge_rlwi9x.jpg",
+//   "description": "Sky Lounge is a rooftop event space with a capacity of up to 150 guests. It offers a stunning view of the city and an intimate ambiance for small events like birthday parties and baby showers. The venue is equipped with modern amenities including a sound system, lighting, and comfortable seating arrangements.",
+//   "services": [
+//       "Birthday"
+//   ],
+//   "bookingDates": [
+//       "2023-04-15",
+//       "2023-05-20",
+//       "",
+//       ""
+//   ],
+//   "shifts": {
+//       "morning": false,
+//       "evening": true
+//   },
+//   "rating": 4.5,
+//   "decorations": [
+//       {
+//           "name": "Balloon Decoration",
+//           "charges": 1000
+//       },
+//       {
+//           "name": "Flower Decoration",
+//           "charges": 1500
+//       },
+//       {
+//           "name": "None",
+//           "charges": 0
+//       }
+//   ],
+//   "menus": {
+//       "menu1": {
+//           "uid": "menu1",
+//           "name": "Standard Menu",
+//           "items": [
+//               "Mini Burgers",
+//               "Chicken Wings",
+//               "French Fries",
+//               "Fruit Platter",
+//               "Soft Drinks"
+//           ],
+//           "price": 600
+//       },
+//       "menu2": {
+//           "uid": "menu2",
+//           "name": "Deluxe Menu",
+//           "items": [
+//               "Mini Pizzas",
+//               "Chicken Tikka",
+//               "Pasta Salad",
+//               "Fruit Trifle",
+//               "Soft Drinks",
+//               "Fruit Juice"
+//           ],
+//           "price": 900
+//       }
+//   }
+// },
+// {
+//   "id": "12",
+//   "name": "The Playhouse",
+//   "location": "Rawalpindi",
+//   "capacity": 150,
+//   "price": 1000,
+//   "img": "https://res.cloudinary.com/dnn5oehbn/image/upload/v1679018798/evento/playhouse_lbu9yd.jpg",
+//   "description": "The Playhouse is a fun and unique venue for kids' birthday parties. Located in the heart of Rawalpindi, it offers a range of activities and games for kids of all ages. The venue has a capacity of up to 150 guests and is equipped with a sound system, lighting, and comfortable seating arrangements. The Playhouse also offers catering services and custom decorations to make your child's special day even more memorable.",
+//   "services": [
+//       "Birthday"
+//   ],
+//   "bookingDates": [
+//       "2023-04-01",
+//       "2023-04-02",
+//       "2023-04-03",
+//       ""
+//   ],
+//   "shifts": {
+//       "morning": true,
+//       "evening": true
+//   },
+//   "rating": 4,
+//   "decorations": [
+//       {
+//           "name": "Balloon Decoration",
+//           "charges": 500
+//       },
+//       {
+//           "name": "Themed Decoration",
+//           "charges": 1000
+//       },
+//       {
+//           "name": "None",
+//           "charges": 0
+//       }
+//   ],
+//   "menus": {
+//       "menu1": {
+//           "uid": "menu1",
+//           "name": "Basic Menu",
+//           "items": [
+//               "Pizza",
+//               "French Fries",
+//               "Hot Dogs",
+//               "Popcorn",
+//               "Cupcakes",
+//               "Soft Drinks"
+//           ],
+//           "price": 500
+//       },
+//       "menu2": {
+//           "uid": "menu2",
+//           "name": "Deluxe Menu",
+//           "items": [
+//               "Pizza",
+//               "Burgers",
+//               "Chicken Nuggets",
+//               "Popcorn",
+//               "Cupcakes",
+//               "Soft Drinks",
+//               "Ice Cream"
+//           ],
+//           "price": 800
+//       }
+//   }
+// },
+// {
+//   "id": "13",
+//   "name": "Rawalpindi Convention Center",
+//   "location": "Rawalpindi",
+//   "capacity": 500,
+//   "price": 50000,
+//   "img": "https://res.cloudinary.com/dnn5oehbn/image/upload/v1679020772/evento/rawalpindi-convention-center.jpg",
+//   "description": "The Rawalpindi Convention Center is a spacious venue ideal for large-scale seminars and conferences. Located in the heart of Rawalpindi, it boasts a seating capacity of up to 500 guests, as well as state-of-the-art audio and visual equipment. The venue also offers catering services and has ample parking space for guests. With its modern amenities and prime location, the Rawalpindi Convention Center is the perfect choice for your next seminar or conference.",
+//   "services": [
+//     "Seminars",
+//     "Conferences"
+//   ],
+//   "bookingDates": [
+//     "2023-04-01",
+//     "2023-04-02",
+//     "2023-04-03",
+//     ""
+//   ],
+//   "shifts": {
+//     "morning": true,
+//     "evening": true
+//   },
+//   "rating": 4.5,
+//   "decorations": [
+//     {
+//       "name": "Basic Decoration",
+//       "charges": 1000
+//     },
+//     {
+//       "name": "Themed Decoration",
+//       "charges": 2000
+//     },
+//     {
+//       "name": "Customized Decoration",
+//       "charges": 3000
+//     },
+//     {
+//       "name": "None",
+//       "charges": 0
+//     }
+//   ],
+//   "menus": {
+//     "menu1": {
+//       "uid": "menu1",
+//       "name": "Standard Menu",
+//       "items": [
+//         "Tea",
+//         "Coffee",
+//         "Assorted Sandwiches",
+//         "Assorted Pastries",
+//         "Assorted Cookies"
+//       ],
+//       "price": 500
+//     },
+//     "menu2": {
+//       "uid": "menu2",
+//       "name": "Premium Menu",
+//       "items": [
+//         "Tea",
+//         "Coffee",
+//         "Assorted Sandwiches",
+//         "Assorted Pastries",
+//         "Assorted Cookies",
+//         "Assorted Fruits",
+//         "Assorted Juices"
+//       ],
+//       "price": 800
+//     }
+//   }
+// },
+// {
+//   "id": "25",
+//   "name": "Rawalpindi Cricket Stadium",
+//   "location": "Rawalpindi",
+//   "capacity": 25000,
+//   "price": 500000,
+//   "img": "https://res.cloudinary.com/dnn5oehbn/image/upload/v1679018798/evento/cricket-stadium_a4zt2k.jpg",
+//   "description": "The Rawalpindi Cricket Stadium is a popular venue for large-scale events, including concerts. It has a seating capacity of 25,000 and offers state-of-the-art sound and lighting systems. The stadium also features a spacious stage, backstage area, and ample parking for guests. With its central location in Rawalpindi, it's easily accessible for concert-goers from across the city.",
+//   "services": [
+//     "Concerts"
+//   ],
+//   "bookingDates": [
+//     "2023-06-01",
+//     "2023-06-02",
+//     "2023-06-03",
+//     ""
+//   ],
+//   "shifts": {
+//     "evening": true
+//   },
+//   "rating": 4.5,
+//   "decorations": [
+//     {
+//       "name": "Basic Stage Decoration",
+//       "charges": 20000
+//     },
+//     {
+//       "name": "Themed Stage Decoration",
+//       "charges": 50000
+//     },
+//     {
+//       "name": "Customized Stage Decoration",
+//       "charges": 100000
+//     }
+//   ],
+//   "menus": {
+//     "menu1": {
+//       "uid": "menu1",
+//       "name": "Standard Menu",
+//       "items": [
+//         "Biryani",
+//         "Kabab",
+//         "Naan",
+//         "Salad",
+//         "Cold Drinks"
+//       ],
+//       "price": 500
+//     },
+//     "menu2": {
+//       "uid": "menu2",
+//       "name": "Deluxe Menu",
+//       "items": [
+//         "BBQ Platter",
+//         "Biryani",
+//         "Kabab",
+//         "Naan",
+//         "Salad",
+//         "Dessert",
+//         "Cold Drinks"
+//       ],
+//       "price": 1000
+//     }
+//   }
+// },
+// {
+//   "id": "15",
+//   "name": "The Grand Ballroom",
+//   "location": "Rawalpindi",
+//   "capacity": 500,
+//   "price": 20000,
+//   "img": "https://res.cloudinary.com/dnn5oehbn/image/upload/v1679020587/evento/grand-ballroom_q4b6xc.jpg",
+//   "description": "The Grand Ballroom is a luxurious and spacious venue perfect for corporate events, conferences, and seminars. Located in the heart of Rawalpindi, it features a large ballroom with a capacity of up to 500 guests, as well as smaller meeting rooms and breakout areas. The venue is equipped with state-of-the-art audio-visual equipment, high-speed Wi-Fi, and comfortable seating arrangements. The Grand Ballroom also offers catering services and custom decorations to suit the theme and style of your event.",
+//   "services": [
+//       "Corporate Events",
+//       "Conferences",
+//       "Seminars"
+//   ],
+//   "bookingDates": [
+//       "2023-05-01",
+//       "2023-05-02",
+//       "2023-05-03",
+//       ""
+//   ],
+//   "shifts": {
+//       "morning": true,
+//       "evening": true
+//   },
+//   "rating": 4.5,
+//   "decorations": [
+//       {
+//           "name": "Flower Decoration",
+//           "charges": 5000
+//       },
+//       {
+//           "name": "Themed Decoration",
+//           "charges": 10000
+//       },
+//       {
+//           "name": "None",
+//           "charges": 0
+//       }
+//   ],
+//   "menus": {
+//       "menu1": {
+//           "uid": "menu1",
+//           "name": "Basic Menu",
+//           "items": [
+//               "Sandwiches",
+//               "Fruit Platter",
+//               "Assorted Snacks",
+//               "Soft Drinks",
+//               "Tea/Coffee"
+//           ],
+//           "price": 1000
+//       },
+//       "menu2": {
+//           "uid": "menu2",
+//           "name": "Deluxe Menu",
+//           "items": [
+//               "Assorted Starters",
+//               "Grilled Chicken",
+//               "Beef Steak",
+//               "Mixed Vegetables",
+//               "Assorted Desserts",
+//               "Soft Drinks",
+//               "Tea/Coffee"
+//           ],
+//           "price": 2000
+//       }
+//   }
+// }
+
+{
+  "name": "Paragon Marquee",
+  "location": "Islamabad",
+  "capacity": 500,
+  "price": 5000,
+  "img": "https://res.cloudinary.com/dnn5oehbn/image/upload/v1679835883/paragon_nrymka.jpg",
+  "description": "Paragon Marquee is one of the most luxurious and spacious venues in Islamabad for weddings and other events. It can accommodate up to 500 guests and offers a wide range of amenities including air conditioning, lighting, and sound systems. The marquee is beautifully decorated with exquisite chandeliers, elegant drapes, and plush seating arrangements. It also offers customized catering services with a variety of delicious cuisines to choose from.",
+  "services": [
+    "Wedding",
+    "Birthday"
+  ],
+  "bookingDates": [
+    "2023-05-01",
+    "2023-05-02",
+    "2023-05-03"
+  ],
+  "shifts": {
+    "morning": true,
+    "evening": true
+  },
+  "rating": 4,
+  "decorations": [
+    {
+      "name": "Floral Decoration",
+      "charges": 2000
+    },
+    {
+      "name": "Light Decoration",
+      "charges": 1000
+    },
+    {
+      "name": "None",
+      "charges": 0
+    }
+  ],
+  "menus": {
+    "menu1": {
+      "uid": "menu1",
+      "name": "Basic Menu",
+      "items": [
+        "Biryani",
+        "Chicken Karahi",
+        "Raita",
+        "Naan",
+        "Salad",
+        "Soft Drinks"
+      ],
+      "price": 1000
+    },
+    "menu2": {
+      "uid": "menu2",
+      "name": "Deluxe Menu",
+      "items": [
+        "Mutton Biryani",
+        "Chicken Tikka",
+        "Chicken Handi",
+        "Raita",
+        "Naan",
+        "Salad",
+        "Soft Drinks",
+        "Dessert"
+      ],
+      "price": 1500
+    }
+  }
+},
+{
+  "id": "6",
+  "name": "Empire Marquee",
+  "location": "Islamabad",
+  "capacity": 500,
+  "price": 1500,
+  "img": "https://res.cloudinary.com/dnn5oehbn/image/upload/v1679834119/empire_qp7sbx.jpg",
+  "description": "Empire Marquee is a luxurious venue located in the heart of Islamabad. It offers a spacious and elegant indoor hall with a capacity of up to 500 guests. The venue is fully air-conditioned and equipped with a state-of-the-art sound system, lighting, and comfortable seating arrangements. Empire Marquee also provides a range of catering options to suit your needs and preferences. With its elegant decor and exceptional services, Empire Marquee is the perfect choice for your next event.",
+  "services": [
+      "Wedding",
+      "Birthday"
+  ],
+  "bookingDates": [
+      "2023-04-05",
+      "2023-04-06",
+      "2023-04-07",
+      "2023-04-12",
+      "2023-04-13",
+      "2023-04-14"
+  ],
+  "shifts": {
+      "morning": true,
+      "evening": true
+  },
+  "rating": 4,
+  "decorations": [
+      {
+          "name": "Floral Decoration",
+          "charges": 1000
+      },
+      {
+          "name": "Themed Decoration",
+          "charges": 1500
+      },
+      {
+          "name": "None",
+          "charges": 0
+      }
+  ],
+  "menus": {
+      "menu1": {
+          "uid": "menu1",
+          "name": "Silver Menu",
+          "items": [
+              "Biryani",
+              "Karahi",
+              "Chicken Tikkas",
+              "Salad",
+              "Soft Drinks"
+          ],
+          "price": 800
+      },
+      "menu2": {
+          "uid": "menu2",
+          "name": "Gold Menu",
+          "items": [
+              "Biryani",
+              "Karahi",
+              "Chicken Tikkas",
+              "Mutton Chops",
+              "Salad",
+              "Soft Drinks"
+          ],
+          "price": 1200
+      },
+      "menu3": {
+          "uid": "menu3",
+          "name": "Platinum Menu",
+          "items": [
+              "Biryani",
+              "Karahi",
+              "Chicken Tikkas",
+              "Mutton Chops",
+              "Fish Fingers",
+              "Salad",
+              "Soft Drinks"
+          ],
+          "price": 1500
+      }
+  }
+},
+{
+  "id": "fm-birthday",
+  "name": "Fortress Marquee",
+  "location": "Islamabad",
+  "capacity": 250,
+  "price": 2500,
+  "img": "https://res.cloudinary.com/dnn5oehbn/image/upload/v1679834120/fortress_marquee_o3rmhi.jpg",
+  "description": "Celebrate your child's birthday in style at Fortress Marquee, one of the most exclusive venues in Islamabad. This spacious and elegant marquee can accommodate up to 250 guests and offers a range of amenities including air-conditioning, sound system, lighting, and comfortable seating arrangements. Our team of event planners can help you with everything from catering to decorations to ensure that your child's special day is a memorable one.",
+  "services": [
+      "Birthday"
+  ],
+  "bookingDates": [
+      "2023-05-01",
+      "2023-05-02",
+      "2023-05-03",
+      ""
+  ],
+  "shifts": {
+      "morning": true,
+      "evening": true
+  },
+  "rating": 3,
+  "decorations": [
+      {
+          "name": "Balloon Decoration",
+          "charges": 500
+      },
+      {
+          "name": "Themed Decoration",
+          "charges": 1000
+      },
+      {
+          "name": "None",
+          "charges": 0
+      }
+  ],
+  "menus": {
+      "menu1": {
+          "uid": "menu1",
+          "name": "Basic Menu",
+          "items": [
+              "Pizza",
+              "French Fries",
+              "Hot Dogs",
+              "Popcorn",
+              "Cupcakes",
+              "Soft Drinks"
+          ],
+          "price": 500
+      },
+      "menu2": {
+          "uid": "menu2",
+          "name": "Deluxe Menu",
+          "items": [
+              "Pizza",
+              "Burgers",
+              "Chicken Nuggets",
+              "Popcorn",
+              "Cupcakes",
+              "Soft Drinks",
+              "Ice Cream"
+          ],
+          "price": 800
+      }
+  }
+},
+{
+  "id": "19",
+  "name": "Monal Marquee",
+  "location": "Islamabad",
+  "capacity": 300,
+  "price": 300000,
+  "img": "https://res.cloudinary.com/dnn5oehbn/image/upload/v1679834122/monal_modsjx.jpg",
+  "description": "Monal Marquee is an elegant and spacious venue for weddings, located in the heart of Islamabad. The venue has a capacity of up to 300 guests and is equipped with modern facilities, including sound systems, lighting, and comfortable seating arrangements. The venue also offers catering services and custom decorations to make your special day even more memorable.",
+  "services": [
+      "Wedding"
+  ],
+  "bookingDates": [
+      "2023-04-01",
+      "2023-04-02",
+      "2023-04-03",
+      ""
+  ],
+  "shifts": {
+      "morning": true,
+      "evening": true
+  },
+  "rating": 5,
+  "decorations": [
+      {
+          "name": "Floral Decoration",
+          "charges": 10000
+      },
+      {
+          "name": "Stage Decoration",
+          "charges": 20000
+      },
+      {
+          "name": "Lighting Decoration",
+          "charges": 15000
+      },
+      {
+          "name": "None",
+          "charges": 0
+      }
+  ],
+  "menus": {
+      "menu1": {
+          "uid": "menu1",
+          "name": "Basic Menu",
+          "items": [
+              "Biryani",
+              "Salad",
+              "Naan",
+              "Raita",
+              "Soft Drinks",
+              "Water"
+          ],
+          "price": 2000
+      },
+      "menu2": {
+          "uid": "menu2",
+          "name": "Deluxe Menu",
+          "items": [
+              "Barbecue",
+              "Biryani",
+              "Salad",
+              "Naan",
+              "Raita",
+              "Desserts",
+              "Soft Drinks",
+              "Water"
+          ],
+          "price": 3000
+      }
+  }
+},
+{
+  "id": "27",
+  "name": "Imperial Marquee",
+  "location": "Islamabad",
+  "capacity": 800,
+  "price": 400000,
+  "img": "https://res.cloudinary.com/dnn5oehbn/image/upload/v1679834123/imperial_marquee_zm30vy.jpg",
+  "description": "Imperial Marquee is a premium venue located in the heart of Islamabad. It offers a grand and luxurious setting for your dream wedding. The marquee has a capacity of up to 800 guests and is equipped with state-of-the-art sound and lighting systems. The venue also provides a dedicated team of event planners, catering services, and custom decorations to make your special day unforgettable.",
+  "services": [
+      "Wedding"
+  ],
+  "bookingDates": [
+      "2023-04-01",
+      "2023-04-02",
+      "2023-04-03",
+      ""
+  ],
+  "shifts": {
+      "morning": false,
+      "evening": true
+  },
+  "rating": 4,
+  "decorations": [
+      {
+          "name": "Flower Decoration",
+          "charges": 50000
+      },
+      {
+          "name": "Lighting Decoration",
+          "charges": 75000
+      },
+      {
+          "name": "Themed Decoration",
+          "charges": 100000
+      },
+      {
+          "name": "None",
+          "charges": 0
+      }
+  ],
+  "menus": {
+      "menu1": {
+          "uid": "menu1",
+          "name": "Silver Menu",
+          "items": [
+              "Chicken Korma",
+              "Beef Biryani",
+              "Daal Makhni",
+              "Raita",
+              "Naan",
+              "Salad",
+              "Soft Drinks"
+          ],
+          "price": 1500
+      },
+      "menu2": {
+          "uid": "menu2",
+          "name": "Gold Menu",
+          "items": [
+              "Chicken Tikka",
+              "Beef Biryani",
+              "Mutton Karahi",
+              "Daal Makhni",
+              "Raita",
+              "Naan",
+              "Salad",
+              "Soft Drinks"
+          ],
+          "price": 2000
+      },
+      "menu3": {
+          "uid": "menu3",
+          "name": "Platinum Menu",
+          "items": [
+              "Chicken Tikka",
+              "Beef Biryani",
+              "Mutton Karahi",
+              "Fish Fry",
+              "Daal Makhni",
+              "Raita",
+              "Naan",
+              "Salad",
+              "Soft Drinks",
+              "Desserts"
+          ],
+          "price": 2500
+      }
+  }
+},
+{
+  "id": "21",
+  "name": "Majesty Marquee",
+  "location": "Islamabad",
+  "capacity": 1000,
+  "price": 5000,
+  "img": "https://res.cloudinary.com/dnn5oehbn/image/upload/v1679834124/majesty_marquee_wgi4kk.jpg",
+  "description": "Majesty Marquee is a luxurious and spacious venue for wedding events. It can accommodate up to 1000 guests and is equipped with state-of-the-art sound and lighting systems. The venue has a large parking area and offers catering services as well as a wide range of decoration options to make your special day unforgettable. The staff at Majesty Marquee are highly trained and dedicated to providing excellent service to make your wedding event a success.",
+  "services": [
+      "Wedding"
+  ],
+  "bookingDates": [
+      "2023-04-01",
+      "2023-04-02",
+      "2023-04-03",
+      ""
+  ],
+  "shifts": {
+      "morning": false,
+      "evening": true
+  },
+  "rating": 3,
+  "decorations": [
+      {
+          "name": "Flower Decoration",
+          "charges": 5000
+      },
+      {
+          "name": "Light Decoration",
+          "charges": 3000
+      },
+      {
+          "name": "Balloon Decoration",
+          "charges": 2000
+      },
+      {
+          "name": "Themed Decoration",
+          "charges": 10000
+      },
+      {
+          "name": "None",
+          "charges": 0
+      }
+  ],
+  "menus": {
+      "menu1": {
+          "uid": "menu1",
+          "name": "Standard Menu",
+          "items": [
+              "Biryani",
+              "Karhai",
+              "Naan",
+              "Raita",
+              "Salad",
+              "Soft Drinks"
+          ],
+          "price": 1500
+      },
+      "menu2": {
+          "uid": "menu2",
+          "name": "Deluxe Menu",
+          "items": [
+              "Mutton Roast",
+              "Chicken Biryani",
+              "Beef Karhai",
+              "Naan",
+              "Raita",
+              "Salad",
+              "Soft Drinks",
+              "Dessert"
+          ],
+          "price": 2500
+      }
+  }
+},
+{
+    "id": "am1",
+    "name": "Avalon Marquee Banquet Arena",
+    "location": "Islamabad",
+    "capacity": 500,
+    "price": 250000,
+    "img": "https://res.cloudinary.com/dnn5oehbn/image/upload/v1679834119/avalon_marquee_zuo1rp.jpg",
+    "description": "Avalon Marquee Banquet Arena is a stunning venue located in the heart of Islamabad. With a capacity of up to 500 guests, it is the perfect location for your dream wedding. The marquee is equipped with a state-of-the-art sound system, lighting, and comfortable seating arrangements. The venue also offers catering services with a range of cuisines to choose from. Avalon Marquee Banquet Arena also provides custom decorations to create an unforgettable ambiance for your special day.",
+    "services": [
+      "Wedding"
+    ],
+    "bookingDates": [
+      "2023-04-01",
+      "2023-04-02",
+      "2023-04-03",
+      ""
+    ],
+    "shifts": {
+      "morning": true,
+      "evening": true
+    },
+    "rating": 5,
+    "decorations": [
+      {
+        "name": "Flower Decoration",
+        "charges": 10000
+      },
+      {
+        "name": "Light Decoration",
+        "charges": 5000
+      },
+      {
+        "name": "Themed Decoration",
+        "charges": 15000
+      },
+      {
+        "name": "None",
+        "charges": 0
+      }
+    ],
+    "menus": {
+      "menu1": {
+        "uid": "menu1",
+        "name": "Silver Menu",
+        "items": [
+          "Biryani",
+          "Chicken Karahi",
+          "Mutton Pulao",
+          "Mix Vegetable",
+          "Raita",
+          "Salad",
+          "Naan",
+          "Cold Drinks"
+        ],
+        "price": 1200
+      },
+      "menu2": {
+        "uid": "menu2",
+        "name": "Gold Menu",
+        "items": [
+          "Beef Biryani",
+          "Mutton Karahi",
+          "Chicken Makhni",
+          "Kabab",
+          "Mix Vegetable",
+          "Raita",
+          "Salad",
+          "Naan",
+          "Cold Drinks",
+          "Fruit Chat"
+        ],
+        "price": 1800
+      },
+      "menu3": {
+        "uid": "menu3",
+        "name": "Platinum Menu",
+        "items": [
+          "Beef Biryani",
+          "Mutton Karahi",
+          "Chicken Makhni",
+          "Fish Fry",
+          "Kabab",
+          "Mix Vegetable",
+          "Raita",
+          "Salad",
+          "Naan",
+          "Cold Drinks",
+          "Fruit Chat",
+          "Gulab Jamun"
+        ],
+        "price": 2500
+      }
+    }
+  },
+  {
+    "id": "21",
+    "name": "Elegance Marquee",
+    "location": "Islamabad",
+    "capacity": 500,
+    "price": 300000,
+    "img": "https://res.cloudinary.com/dnn5oehbn/image/upload/v1679834120/elegance_marquee_l9q09r.jpg",
+    "description": "Elegance Marquee is a premium wedding venue located in the heart of Islamabad. The marquee has a capacity of up to 500 guests and is equipped with state-of-the-art sound and lighting systems. The venue offers a range of catering options, including traditional Pakistani cuisine, continental dishes, and more. Elegance Marquee also offers a variety of decor options to make your special day even more memorable.",
+    "services": [
+        "Wedding",
+        "Birthday"
+    ],
+    "bookingDates": [
+        "2023-06-01",
+        "2023-06-02",
+        "2023-06-03",
+        ""
+    ],
+    "shifts": {
+        "morning": false,
+        "evening": true
+    },
+    "rating": 4,
+    "decorations": [
+        {
+            "name": "Flower Decoration",
+            "charges": 50000
+        },
+        {
+            "name": "Light Decoration",
+            "charges": 25000
+        },
+        {
+            "name": "None",
+            "charges": 0
+        }
+    ],
+    "menus": {
+        "menu1": {
+            "uid": "menu1",
+            "name": "Standard Menu",
+            "items": [
+                "Biryani",
+                "Karhai",
+                "Chicken Tikka",
+                "Vegetable Curry",
+                "Naan",
+                "Raita",
+                "Salad",
+                "Soft Drinks",
+                "Mineral Water"
+            ],
+            "price": 1500
+        },
+        "menu2": {
+            "uid": "menu2",
+            "name": "Deluxe Menu",
+            "items": [
+                "Pulao",
+                "Beef Karhai",
+                "Mutton Tikka",
+                "Vegetable Curry",
+                "Garlic Naan",
+                "Raita",
+                "Salad",
+                "Soft Drinks",
+                "Mineral Water",
+                "Dessert"
+            ],
+            "price": 2000
+        }
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+]
